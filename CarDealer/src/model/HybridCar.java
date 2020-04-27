@@ -1,6 +1,6 @@
 package model;
 
-public class HybridCar extends Car{
+public class HybridCar extends Car implements GasolineConsumable, BatteryConsumable{
 
     //Constants
     public static final int EXTRA=1;
@@ -16,7 +16,28 @@ public class HybridCar extends Car{
     private int typeCharger;
     private double batteryDuration;
     private double batteryConsume;
-
+    /**
+     * It creates a new object type HybridCar
+     * @param totalPrice The total price
+     * @param price The base price
+     * @param brand The brand
+     * @param model The year of the model
+     * @param displacement The displacement  
+     * @param mileage The mileage
+     * @param isNew The status. True if the car is new. False if it doesn't 
+     * @param licensePlate The license plate
+     * @param soat The soat
+     * @param mechanicalTechnicalReview The mechanical technical review
+     * @param typeOfCar The type of car
+     * @param numberOfDoors The number of doors
+     * @param tintedWindows True if the windows are tinted. False if they don't
+     * @param tankCapacity The tank capacity
+     * @param typeOfFuel The type of fuel
+     * @param gasolineConsume The gasoline consume
+     * @param typeCharger The type of charger 
+     * @param batteryDuration The battery duration
+     * @param batteryConsume The battery consume
+     */
     public HybridCar(double totalPrice, double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel, double gasolineConsume, int typeCharger, double batteryDuration, double batteryConsume){
         super(totalPrice, price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows);
         this.tankCapacity=tankCapacity;
@@ -25,6 +46,18 @@ public class HybridCar extends Car{
         this.typeCharger=typeCharger;
         this.batteryDuration=batteryDuration;
         this.batteryConsume=batteryConsume;
+    }
+
+    @Override
+    public double calculateGasolineConsume() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public double calculateBatteryConsume() {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
     //getters

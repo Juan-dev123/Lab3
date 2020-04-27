@@ -1,6 +1,7 @@
 package model;
 
-public class GasolineCar extends Car{
+public class GasolineCar extends Car implements GasolineConsumable{
+    
     //Constants
     public static final int EXTRA=1;
     public static final int CORRIENTE=2;
@@ -34,6 +35,12 @@ public class GasolineCar extends Car{
         this.tankCapacity=tankCapacity;
         this.typeOfFuel=typeOfFuel;
         this.gasolineConsume=gasolineConsume;
+    }
+
+    @Override
+    public double calculateGasolineConsume() {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
     //getters

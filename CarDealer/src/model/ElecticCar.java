@@ -1,8 +1,8 @@
 package model;
 
-public class ElecticCar extends Car{
+public class ElecticCar extends Car implements BatteryConsumable{
 
-    //Contanst
+    //Constants
     public static final int NORMAL=1;
     public static final int FAST=2;
 
@@ -36,6 +36,12 @@ public class ElecticCar extends Car{
         this.typeCharger=typeCharger;
         this.batteryDuration=batteryDuration;
         this.batteryConsume=batteryConsume;
+    }
+
+    @Override
+    public double calculateBatteryConsume() {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
     //getters
