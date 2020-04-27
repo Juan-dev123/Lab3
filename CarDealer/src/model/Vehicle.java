@@ -31,8 +31,7 @@ public abstract class Vehicle {
      * @param soat The soat
      * @param mechanicalTechnicalReview The mechanical technical review
      */
-    public Vehicle(double totalPrice, double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview){
-        this.totalPrice=totalPrice;
+    public Vehicle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview){
         this.price=price;
         this.brand=brand;
         this.model=model;

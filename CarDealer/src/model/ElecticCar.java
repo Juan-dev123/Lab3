@@ -31,8 +31,8 @@ public class ElecticCar extends Car implements BatteryConsumable{
      * @param batteryDuration The battery duration
      * @param batteryConsume The battery consume
      */
-    public ElecticCar(double totalPrice, double price, String brand, int model, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, int typeCharger, double batteryDuration, double batteryConsume){
-        super(totalPrice, price, brand, model, 0, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows);
+    public ElecticCar(double price, String brand, int model, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, int typeCharger, double batteryDuration, double batteryConsume){
+        super(price, brand, model, 0, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows);
         this.typeCharger=typeCharger;
         this.batteryDuration=batteryDuration;
         this.batteryConsume=batteryConsume;

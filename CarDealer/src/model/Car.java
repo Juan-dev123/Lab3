@@ -28,8 +28,8 @@ public abstract class Car extends Vehicle {
      * @param numberOfDoors The number of doors
      * @param tintedWindows True if the windows are tinted. False if they don't
      */
-    public Car(double totalPrice, double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows){
-        super(totalPrice, price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview);
+    public Car(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows){
+        super(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview);
         this.typeOfCar=typeOfCar;
         this.numberOfDoors=numberOfDoors;
         this.tintedWindows=tintedWindows;

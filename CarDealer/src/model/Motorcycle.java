@@ -30,8 +30,8 @@ public class Motorcycle extends Vehicle implements GasolineConsumable{
      * @param gasolineCapacity The gasoline capacity
      * @param gasolineConsume The gasoline consume
      */
-    public Motorcycle(double totalPrice, double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int type, double gasolineCapacity, double gasolineConsume){
-        super(totalPrice, price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview);
+    public Motorcycle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int type, double gasolineCapacity, double gasolineConsume){
+        super(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview);
         this.type=type;
         this.gasolineCapacity=gasolineCapacity;
         this.gasolineConsume=gasolineConsume;

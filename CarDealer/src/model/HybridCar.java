@@ -38,8 +38,8 @@ public class HybridCar extends Car implements GasolineConsumable, BatteryConsuma
      * @param batteryDuration The battery duration
      * @param batteryConsume The battery consume
      */
-    public HybridCar(double totalPrice, double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel, double gasolineConsume, int typeCharger, double batteryDuration, double batteryConsume){
-        super(totalPrice, price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows);
+    public HybridCar(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel, double gasolineConsume, int typeCharger, double batteryDuration, double batteryConsume){
+        super(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows);
         this.tankCapacity=tankCapacity;
         this.typeOfFuel=typeOfFuel;
         this.gasolineConsume=gasolineConsume;
