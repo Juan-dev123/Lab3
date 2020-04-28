@@ -20,7 +20,6 @@ public abstract class Vehicle {
     //Methods
     /**
      * It creates an object type Vehicle
-     * @param totalPrice The total price
      * @param price The base price
      * @param brand The brand
      * @param model The year of the model

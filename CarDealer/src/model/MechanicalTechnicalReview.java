@@ -9,7 +9,7 @@ public class MechanicalTechnicalReview extends Document implements Decodable {
      * It creates an object type MechanicalTechnicalReview
      * @param price The price
      * @param year The year
-     * @param gasLevels The gas levels
+     * @param gasLevels The gases levels
      */
     public MechanicalTechnicalReview(double price, int year, double gasLevels){
         super(price, year);

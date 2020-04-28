@@ -14,7 +14,6 @@ public abstract class Car extends Vehicle {
     //Methods
     /**
      * It creates a new object type Car
-     * @param totalPrice The total price
      * @param price The base price
      * @param brand The brand
      * @param model The year of the model

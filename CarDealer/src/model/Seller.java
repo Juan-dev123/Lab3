@@ -14,11 +14,10 @@ public class Seller extends Person {
      * @param name  The name
      * @param lastName The last name
      * @param id The id
-     * @param totalSales The total sales
      */
-    public Seller(String name, String lastName, int id, int totalSales){
+    public Seller(String name, String lastName, int id){
         super(name, lastName, id);
-        this.totalSales=totalSales;
+        this.totalSales=0;
         clients=new Client[5];
     }
 

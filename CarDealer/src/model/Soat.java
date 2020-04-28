@@ -10,7 +10,7 @@ public class Soat extends Document implements Decodable{
      * It creates a new object type Soat
      * @param price The price
      * @param year The year
-     * @param moneyCovered The money covered by an accident to third parties
+     * @param moneyCovered The money covered for an accident to third parties
      */
     public Soat(double price, int year, double moneyCovered){
         super(price, year);

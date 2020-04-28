@@ -18,7 +18,6 @@ public class HybridCar extends Car implements GasolineConsumable, BatteryConsuma
     private double batteryConsume;
     /**
      * It creates a new object type HybridCar
-     * @param totalPrice The total price
      * @param price The base price
      * @param brand The brand
      * @param model The year of the model

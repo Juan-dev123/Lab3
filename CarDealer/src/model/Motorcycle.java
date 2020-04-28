@@ -16,7 +16,6 @@ public class Motorcycle extends Vehicle implements GasolineConsumable{
     //Methods
     /**
      * It creates a new object type Motorcycle
-     * @param totalPrice The total price
      * @param price The base price
      * @param brand The brand
      * @param model The year of the model

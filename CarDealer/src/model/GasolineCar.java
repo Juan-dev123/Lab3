@@ -13,7 +13,6 @@ public class GasolineCar extends Car implements GasolineConsumable{
     private double gasolineConsume;
     /**
      * It creates an object type GasolineCar
-     * @param totalPrice The total price
      * @param price The base price
      * @param brand The brand
      * @param model The year of the model
