@@ -36,7 +36,7 @@ public class Business {
         sellers[4]= new Seller("Frank", "Delfino", 5678901);
         sellers[5]= new Seller("Bonnie", "Winterbottom", 6789012);
         sellers[6]= new Seller("Oliver", "Hampton", 7890123);
-
+        parkingLot=new ParkingLot();
         vehicles=new ArrayList<Vehicle>();
     }
 
@@ -83,8 +83,65 @@ public class Business {
      */
     public String registerVehicle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel, double gasolineConsume){
         String message;
-        vehicles.add(new GasolineCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume));
-        message="The vehicle was registered successfully";
+        if(saveInParkingLot(model, isNew)){
+            int freeSpace;
+            message="The vehicle was registered successfully in the parking lot";
+            GasolineCar vehicle=new GasolineCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume);
+            if(model==2011){
+                freeSpace=lookForSpaceinParkingLot(3);
+                if(freeSpace==-1){
+                    freeSpace=lookForSpaceinParkingLot(4);
+                    if(freeSpace==-1){
+                        message="The vehicle was not registered. There is not space in the parking lot";
+                    }else{
+                        parkingLot.saveVehicle(freeSpace, 4, vehicle);
+                    }
+                }else{
+                    parkingLot.saveVehicle(freeSpace, 3, vehicle);
+                }
+            }else if(model<2011){
+                freeSpace=lookForSpaceinParkingLot(4);
+                if(freeSpace==-1){
+                    message="The vehicle was not registered. There is not space in the parking lot";
+                }else{
+                    parkingLot.saveVehicle(freeSpace, 4, vehicle);
+                }
+            }else{
+                switch(model){
+                    case 2014:
+                        freeSpace=lookForSpaceinParkingLot(0);
+                        if(freeSpace==-1){
+                            
+                            message="The vehicle was not registered. There is not space in the parking lot";
+                        }else{
+                            System.out.println("Im here");
+                            System.out.println(freeSpace);
+                            
+                            parkingLot.saveVehicle(freeSpace, 0, vehicle);
+                        }
+                        break;
+                    case 2013:
+                        freeSpace=lookForSpaceinParkingLot(1);
+                        if(freeSpace==-1){
+                            message="The vehicle was not registered. There is not space in the parking lot";
+                        }else{
+                            parkingLot.saveVehicle(freeSpace, 1, vehicle);
+                        }
+                        break;
+                    case 2012:
+                        freeSpace=lookForSpaceinParkingLot(2);
+                        if(freeSpace==-1){
+                            message="The vehicle was not registered. There is not space in the parking lot";
+                        }else{
+                            parkingLot.saveVehicle(freeSpace, 2, vehicle);
+                        }
+                        break;
+                }
+            }
+        }else{
+            vehicles.add(new GasolineCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume));
+            message="The vehicle was registered successfully in the concessionaire";
+        }
         return message;
     }
 
@@ -107,10 +164,67 @@ public class Business {
      * @param batteryConsume The battery consume
      * @return A message informing that the vehicle was registered
      */
-    public String registerVehicle(double price, String brand, int model, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, int typeCharger, double batteryDuration, double batteryConsume){
+    public String registerVehicle(double price, String brand, int model, double displacement,double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, int typeCharger, double batteryDuration, double batteryConsume){
         String message;
-        vehicles.add(new ElecticCar(price, brand, model, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration, batteryConsume));
-        message="The vehicle was registered successfully";
+        if(saveInParkingLot(model, isNew)){
+            int freeSpace;
+            message="The vehicle was registered successfully in the parking lot";
+            ElecticCar vehicle=new ElecticCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration, batteryConsume);
+            if(model==2011){
+                freeSpace=lookForSpaceinParkingLot(3);
+                if(freeSpace==-1){
+                    freeSpace=lookForSpaceinParkingLot(4);
+                    if(freeSpace==-1){
+                        message="The vehicle was not registered. There is not space in the parking lot";
+                    }else{
+                        parkingLot.saveVehicle(freeSpace, 4, vehicle);
+                    }
+                }else{
+                    parkingLot.saveVehicle(freeSpace, 3, vehicle);
+                }
+            }else if(model<2011){
+                freeSpace=lookForSpaceinParkingLot(4);
+                if(freeSpace==-1){
+                    message="The vehicle was not registered. There is not space in the parking lot";
+                }else{
+                    parkingLot.saveVehicle(freeSpace, 4, vehicle);
+                }
+            }else{
+                switch(model){
+                    case 2014:
+                        freeSpace=lookForSpaceinParkingLot(0);
+                        if(freeSpace==-1){
+                            
+                            message="The vehicle was not registered. There is not space in the parking lot";
+                        }else{
+                            System.out.println("Im here");
+                            System.out.println(freeSpace);
+                            
+                            parkingLot.saveVehicle(freeSpace, 0, vehicle);
+                        }
+                        break;
+                    case 2013:
+                        freeSpace=lookForSpaceinParkingLot(1);
+                        if(freeSpace==-1){
+                            message="The vehicle was not registered. There is not space in the parking lot";
+                        }else{
+                            parkingLot.saveVehicle(freeSpace, 1, vehicle);
+                        }
+                        break;
+                    case 2012:
+                        freeSpace=lookForSpaceinParkingLot(2);
+                        if(freeSpace==-1){
+                            message="The vehicle was not registered. There is not space in the parking lot";
+                        }else{
+                            parkingLot.saveVehicle(freeSpace, 2, vehicle);
+                        }
+                        break;
+                }
+            }
+        }else{
+            vehicles.add(new ElecticCar(price, brand, model, displacement,mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration, batteryConsume));
+            message="The vehicle was registered successfully";
+        }
         return message;
     }
 
@@ -138,8 +252,65 @@ public class Business {
      */
     public String registerVehicle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel, double gasolineConsume, int typeCharger, double batteryDuration, double batteryConsume){
         String message;
-        vehicles.add(new HybridCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume, typeCharger, batteryDuration, batteryConsume));
-        message="The vehicle was registered successfully";
+        if(saveInParkingLot(model, isNew)){
+            int freeSpace;
+            message="The vehicle was registered successfully in the parking lot";
+            HybridCar vehicle=new HybridCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume, typeCharger, batteryDuration, batteryConsume);
+            if(model==2011){
+                freeSpace=lookForSpaceinParkingLot(3);
+                if(freeSpace==-1){
+                    freeSpace=lookForSpaceinParkingLot(4);
+                    if(freeSpace==-1){
+                        message="The vehicle was not registered. There is not space in the parking lot";
+                    }else{
+                        parkingLot.saveVehicle(freeSpace, 4, vehicle);
+                    }
+                }else{
+                    parkingLot.saveVehicle(freeSpace, 3, vehicle);
+                }
+            }else if(model<2011){
+                freeSpace=lookForSpaceinParkingLot(4);
+                if(freeSpace==-1){
+                    message="The vehicle was not registered. There is not space in the parking lot";
+                }else{
+                    parkingLot.saveVehicle(freeSpace, 4, vehicle);
+                }
+            }else{
+                switch(model){
+                    case 2014:
+                        freeSpace=lookForSpaceinParkingLot(0);
+                        if(freeSpace==-1){
+                            
+                            message="The vehicle was not registered. There is not space in the parking lot";
+                        }else{
+                            System.out.println("Im here");
+                            System.out.println(freeSpace);
+                            
+                            parkingLot.saveVehicle(freeSpace, 0, vehicle);
+                        }
+                        break;
+                    case 2013:
+                        freeSpace=lookForSpaceinParkingLot(1);
+                        if(freeSpace==-1){
+                            message="The vehicle was not registered. There is not space in the parking lot";
+                        }else{
+                            parkingLot.saveVehicle(freeSpace, 1, vehicle);
+                        }
+                        break;
+                    case 2012:
+                        freeSpace=lookForSpaceinParkingLot(2);
+                        if(freeSpace==-1){
+                            message="The vehicle was not registered. There is not space in the parking lot";
+                        }else{
+                            parkingLot.saveVehicle(freeSpace, 2, vehicle);
+                        }
+                        break;
+                }
+            }
+        }else{
+            vehicles.add(new HybridCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume, typeCharger, batteryDuration, batteryConsume));
+            message="The vehicle was registered successfully";
+        }
         return message;
     }
 
@@ -150,9 +321,22 @@ public class Business {
      */
     public boolean searchVehicle(String licensePlate){
         boolean exist=false;
-        for(int i=0; i<vehicles.size() && !exist;i++){
-            if(vehicles.get(i).getLicensePlate().equals(licensePlate)){
-                exist=true;
+        boolean stop=false;
+        for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+            if(parkingLot.getVehicles()[i]!=null){
+                if(parkingLot.getVehicles()[i].getLicensePlate().equals(licensePlate)){
+                    exist=true;
+                    stop=true;
+                }
+            }else{
+                stop=true;
+            } 
+        }
+        if(!exist){
+            for(int i=0; i<vehicles.size() && !exist;i++){
+                if(vehicles.get(i).getLicensePlate().equals(licensePlate)){
+                    exist=true;
+                }
             }
         }
         return exist;
@@ -179,6 +363,37 @@ public class Business {
     public MechanicalTechnicalReview createMTR(double price, int year, double gasLevels){
         MechanicalTechnicalReview mtr=new MechanicalTechnicalReview(price, year, gasLevels);
         return mtr;
+    }
+    /**
+     * It checks if a car should go to the parking lot
+     * @param model The model
+     * @param isNew The status. True if the car is new. False if it doesn't 
+     * @return True if the car should go to the praking lot. False if it shouldn't
+     */
+    public boolean saveInParkingLot(int model, boolean isNew){
+        boolean toTheGarage=false;
+        if(model<2015 && isNew==false){
+            toTheGarage=true;
+        }
+        return toTheGarage;
+    }
+
+    /**
+     * It searches a free space in a column of the parking lot
+     * @param column The column
+     * @return  The free space. If there are not space return -1
+     */
+    public int lookForSpaceinParkingLot(int column){
+        int freeSpace=-1;
+        boolean stop=false;
+        Vehicle[][] parkinLot=this.parkingLot.getParkingLot();
+        for(int i=0; i<parkinLot.length && !stop;i++){
+            if(parkinLot[i][column]==null){
+                freeSpace=i;
+                stop=true;
+            }
+        }
+        return freeSpace;
     }
 
     //getters

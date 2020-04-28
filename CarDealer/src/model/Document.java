@@ -12,7 +12,12 @@ public abstract class Document {
     public Document(double price, int year){
         this.price=price;
         this.year=year;
-        image=new int[4][4]; //COMPLETEEEE
+        image=new int[4][4]; 
+        for(int i=0; i<4; i++){
+            for(int j=0; j<4; j++){
+                image[i][j]=(int)(Math.random()*49+1);
+            }
+        }
     }
 
     //getters

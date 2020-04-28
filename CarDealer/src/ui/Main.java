@@ -177,7 +177,7 @@ public class Main{
                             }while(typeCharger>2 || typeCharger<1);
                             batteryDuration=checkDouble("Enter the baterry duration", 1);
                             batteryConsume=checkDouble("Enter the battery consume", 1);
-                            System.out.println(business.registerVehicle(price, brand, model, mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration, batteryConsume));
+                            System.out.println(business.registerVehicle(price, brand, model, displacement,mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration, batteryConsume));
                             break;
                         case 3:
                             tankCapacity=checkDouble("What is the tank capacity?", 1);
