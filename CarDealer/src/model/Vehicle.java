@@ -3,7 +3,6 @@ package model;
 public abstract class Vehicle {
 
     //Relations
-    private Client owner;
     private Document mechanicalTechnicalReview;
     private Document soat;
 
@@ -38,7 +37,6 @@ public abstract class Vehicle {
         this.mileage=mileage;
         this.isNew=isNew;
         this.licensePlate=licensePlate;
-        owner=null;
         this.soat=soat;
         this.mechanicalTechnicalReview=mechanicalTechnicalReview;
     }
@@ -98,13 +96,6 @@ public abstract class Vehicle {
      */
     public String getLicensePlate() {
         return licensePlate;
-    }
-
-    /**
-     * @return The owner
-     */
-    public Client getOwner() {
-        return owner;
     }
 
     /**
@@ -175,13 +166,6 @@ public abstract class Vehicle {
      */
     public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
-    }
-
-    /**
-     * @param owner The owner to set
-     */
-    public void setOwner(Client owner) {
-        this.owner = owner;
     }
 
     /**

@@ -36,14 +36,24 @@ public class Main{
         do{
             System.out.println("What do you want to do?");
             System.out.println("1 Register a vehicle");
+            System.out.println("2 Register a client");
+            System.out.println("3 Register a seller");
             option=read.nextInt();
+            read.nextLine();
             clean();
             switch(option){
             case 1:
                 registerVehicle();
                 break;
+            case 2:
+                registerClient();
+                break;
+            case 3:
+                registerSeller();
+                break;
             default:
                 System.out.println("That option doesn't exist");
+                read.nextLine();
                 break;    
             }
             System.out.println("Do you want to execute the menu again?");
@@ -225,6 +235,36 @@ public class Main{
             }
             read.nextLine();
         }
+    }
+
+    /**
+     * It registers a client
+     */
+    public void registerClient(){
+        System.out.println("Enter the name");
+        String name=read.nextLine();
+        System.out.println("Enter the last name");
+        String lastName=read.nextLine();
+        int id=checkInt("Enter the id", 1);
+        System.out.println("Enter the phone number");
+        read.nextLine();
+        String phoneNumber=read.nextLine();
+        System.out.println("Enter the email");
+        String email=read.nextLine();
+        System.out.println(business.registerClient(name, lastName, id, phoneNumber, email));
+    }
+
+    /**
+     * It register a seller
+     */
+    public void registerSeller(){
+        System.out.println("Enter the name");
+        String name=read.nextLine();
+        System.out.println("Enter the last name");
+        String lastName=read.nextLine();
+        int id=checkInt("Enter the id", 1);
+        read.nextLine();
+        System.out.println(business.registerSeller(name, lastName, id));
     }
     /**
      * It checks if a license plate is already existed

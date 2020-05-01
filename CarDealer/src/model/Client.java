@@ -6,9 +6,9 @@ public class Client extends Person {
     
     //Relations
     private ArrayList<Vehicle> interestingCars; 
-
+    private ArrayList<Vehicle> boughtCars;
     //Atributes
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
 
     //Methods
@@ -20,7 +20,7 @@ public class Client extends Person {
      * @param phoneNumber The phone number
      * @param email The email
      */
-    public Client(String name, String lastName, int id, int phoneNumber, String email){
+    public Client(String name, String lastName, int id, String phoneNumber, String email){
         super(name, lastName, id);
         this.phoneNumber=phoneNumber;
         this.email=email;
@@ -31,7 +31,7 @@ public class Client extends Person {
     /**
      * @return The phone number
      */
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -49,11 +49,18 @@ public class Client extends Person {
        return interestingCars;
    }
 
+   /**
+    * @return The bought cars
+    */
+   public ArrayList<Vehicle> getBoughtCars() {
+       return boughtCars;
+   }
+
     //setters
     /**
      * @param phoneNumber The phone number to set
      */
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -69,5 +76,12 @@ public class Client extends Person {
     */
    public void setInterestingCars(ArrayList<Vehicle> interestingCars) {
        this.interestingCars = interestingCars;
+   }
+
+   /**
+    * @param boughtCars The bought cars to set
+    */
+   public void setBoughtCars(ArrayList<Vehicle> boughtCars) {
+       this.boughtCars = boughtCars;
    }
 }

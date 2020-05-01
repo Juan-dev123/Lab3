@@ -7,6 +7,7 @@ public class Business {
     private Seller[] sellers;
     private ArrayList<Vehicle> vehicles;
     private ParkingLot parkingLot;
+    private ArrayList<Client> clients;
 
     //Attributes
     private String name;
@@ -38,6 +39,7 @@ public class Business {
         sellers[6]= new Seller("Oliver", "Hampton", 7890123);
         parkingLot=new ParkingLot();
         vehicles=new ArrayList<Vehicle>();
+        clients=new ArrayList<Client>();
     }
 
     /**
@@ -315,6 +317,52 @@ public class Business {
     }
 
     /**
+     * It registers a client
+     * @param name The name
+     * @param lastName The last name
+     * @param id The id
+     * @param phoneNumber The phone number
+     * @param email The email
+     * @return A message informing if the client was registered
+     */
+    public String registerClient(String name, String lastName, int id, String phoneNumber, String email){
+        String message;
+        if(searchClient(id)==null){
+            clients.add(new Client(name, lastName, id, phoneNumber, email));
+            message="The client was registered successfully";
+        }else{
+            message="A client with that id is already existed";
+        }
+        return message;
+    }
+
+    /**
+     * It registers a seller
+     * @param name  The name
+     * @param lastName The last name
+     * @param id The id
+     * @return A message informing if the seller was registered
+     */
+    public String registerSeller(String name, String lastName, int id){
+        String message="";
+        if(searchSeller(id)==null){
+            boolean stop=false;
+            for(int i=0; i<sellers.length && !stop; i++){
+                if(sellers[i]==null){
+                    sellers[i]=new Seller(name, lastName, id);
+                    message="The client was registered successfully";
+                    stop=true;
+                }else if(i==sellers.length-1){
+                    message="There is not space for a new seller";
+                }
+            }   
+        }else{
+            message="A seller with that id is already existed";
+        }
+        return message;
+    }
+
+    /**
      * It searches a vehicle
      * @param licensePlate The license plate
      * @return True if the vechicle exists. False if it doesn't.
@@ -395,6 +443,43 @@ public class Business {
         }
         return freeSpace;
     }
+    /**
+     * It search a client with an id
+     * @param id The id 
+     * @return The client
+     */
+    public Client searchClient(int id){
+        Client client=null;
+        boolean stop=false;
+        for(int i=0; i<clients.size() && !stop; i++){
+            if(clients.get(i).getId()==id){
+                client=clients.get(i);
+                stop=true;
+            }
+        }
+        return client;
+    }
+    /**
+     * It search a seller with an id
+     * @param id The id
+     * @return The seller
+     */
+    public Seller searchSeller(int id){
+        Seller seller=null;
+        boolean stop=false;
+        for(int i=0; i<sellers.length && !stop; i++){
+            if(sellers[i]!=null){
+                if(sellers[i].getId()==id){
+                    seller=sellers[i];
+                    stop=true;
+                }
+            }else{
+                stop=true;
+            }
+            
+        }
+        return seller;
+    }
 
     //getters
     /**
@@ -446,6 +531,13 @@ public class Business {
         return parkingLot;
     }
 
+    /**
+     * @return The clients
+     */
+    public ArrayList<Client> getClients() {
+        return clients;
+    }
+
     //setters
     /**
      * @param name The name to set
@@ -494,5 +586,12 @@ public class Business {
      */
     public void setParkingLot(ParkingLot parkingLot) {
         this.parkingLot = parkingLot;
+    }
+
+    /**
+     * @param clients The clients to set
+     */
+    public void setClients(ArrayList<Client> clients) {
+        this.clients = clients;
     }
 }
