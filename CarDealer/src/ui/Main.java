@@ -27,7 +27,7 @@ public class Main{
         clean();
     }
     /**
-     * It prints on console the menu
+     * It prints on screen the menu
      */
     public void menu(){
         int option;
@@ -38,6 +38,7 @@ public class Main{
             System.out.println("1 Register a vehicle");
             System.out.println("2 Register a client");
             System.out.println("3 Register a seller");
+            System.out.println("4 Assign a client to a seller");
             option=read.nextInt();
             read.nextLine();
             clean();
@@ -50,6 +51,9 @@ public class Main{
                 break;
             case 3:
                 registerSeller();
+                break;
+            case 4:
+                assignClient();
                 break;
             default:
                 System.out.println("That option doesn't exist");
@@ -266,6 +270,46 @@ public class Main{
         read.nextLine();
         System.out.println(business.registerSeller(name, lastName, id));
     }
+
+    /**
+     * It assigns a client to a seller
+     */
+    public void assignClient(){
+        int positionClient=0;
+        int positionSeller=0;
+        int numberClients;
+        int numberSellers=0;
+        boolean stop;
+        if(business.getClients().size()==0){
+            System.out.println("There are not clients");
+        }else{
+            do{
+                System.out.println("Choose a client");
+                numberClients=printClients();
+                positionClient=read.nextInt();
+            }while(positionClient<1 || positionClient>numberClients);
+            if(business.getSellers().length==0){
+                System.out.println("There are not sellers");
+            }else{
+                do{
+                    System.out.println("Choose a seller");
+                    stop=false;
+                    for(int i=0; i<business.getSellers().length && !stop; i++){
+                        if(business.getSellers()[i]!=null){
+                            System.out.printf("%d Name:%s %s%n  Id:%d%n",i+1,business.getSellers()[i].getName(), business.getSellers()[i].getLastName(), business.getSellers()[i].getId());
+                        }else{
+                            stop=true;
+                            numberSellers=i;
+                        }    
+                    }
+                    positionSeller=read.nextInt();
+                }while(positionSeller<1 || positionSeller>numberSellers);
+                System.out.println(business.assignClient(positionSeller-1, positionClient-1));
+                read.nextLine(); 
+            } 
+        }   
+    }
+
     /**
      * It checks if a license plate is already existed
      * @param licensePlate The license plate
@@ -322,6 +366,18 @@ public class Main{
             variable=read.nextInt();
         }while(variable<minumum);
         return variable;
+    }
+
+    /**
+     * It prints on screen all the clients registered in the business
+     * @return The number of clients
+     */
+    public int printClients(){
+        int numberClients=business.getClients().size();
+        for(int i=0; i<business.getClients().size(); i++){
+            System.out.printf("%d Name:%s %s%n  Id:%d%n",i+1,business.getClients().get(i).getName(), business.getClients().get(i).getLastName(), business.getClients().get(i).getId());
+        }
+        return numberClients;
     }
 
     /**

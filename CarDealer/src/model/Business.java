@@ -89,19 +89,7 @@ public class Business {
             int freeSpace;
             message="The vehicle was registered successfully in the parking lot";
             GasolineCar vehicle=new GasolineCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume);
-            if(model==2011){
-                freeSpace=lookForSpaceinParkingLot(3);
-                if(freeSpace==-1){
-                    freeSpace=lookForSpaceinParkingLot(4);
-                    if(freeSpace==-1){
-                        message="The vehicle was not registered. There is not space in the parking lot";
-                    }else{
-                        parkingLot.saveVehicle(freeSpace, 4, vehicle);
-                    }
-                }else{
-                    parkingLot.saveVehicle(freeSpace, 3, vehicle);
-                }
-            }else if(model<2011){
+            if(model<2011){
                 freeSpace=lookForSpaceinParkingLot(4);
                 if(freeSpace==-1){
                     message="The vehicle was not registered. There is not space in the parking lot";
@@ -116,9 +104,6 @@ public class Business {
                             
                             message="The vehicle was not registered. There is not space in the parking lot";
                         }else{
-                            System.out.println("Im here");
-                            System.out.println(freeSpace);
-                            
                             parkingLot.saveVehicle(freeSpace, 0, vehicle);
                         }
                         break;
@@ -136,6 +121,14 @@ public class Business {
                             message="The vehicle was not registered. There is not space in the parking lot";
                         }else{
                             parkingLot.saveVehicle(freeSpace, 2, vehicle);
+                        }
+                        break;
+                    case 2011:
+                        freeSpace=lookForSpaceinParkingLot(3);
+                        if(freeSpace==-1){
+                            message="The vehicle was not registered. There is not space in the parking lot";
+                        }else{
+                            parkingLot.saveVehicle(freeSpace, 3, vehicle);
                         }
                         break;
                 }
@@ -172,19 +165,7 @@ public class Business {
             int freeSpace;
             message="The vehicle was registered successfully in the parking lot";
             ElecticCar vehicle=new ElecticCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration, batteryConsume);
-            if(model==2011){
-                freeSpace=lookForSpaceinParkingLot(3);
-                if(freeSpace==-1){
-                    freeSpace=lookForSpaceinParkingLot(4);
-                    if(freeSpace==-1){
-                        message="The vehicle was not registered. There is not space in the parking lot";
-                    }else{
-                        parkingLot.saveVehicle(freeSpace, 4, vehicle);
-                    }
-                }else{
-                    parkingLot.saveVehicle(freeSpace, 3, vehicle);
-                }
-            }else if(model<2011){
+            if(model<2011){
                 freeSpace=lookForSpaceinParkingLot(4);
                 if(freeSpace==-1){
                     message="The vehicle was not registered. There is not space in the parking lot";
@@ -199,9 +180,6 @@ public class Business {
                             
                             message="The vehicle was not registered. There is not space in the parking lot";
                         }else{
-                            System.out.println("Im here");
-                            System.out.println(freeSpace);
-                            
                             parkingLot.saveVehicle(freeSpace, 0, vehicle);
                         }
                         break;
@@ -219,6 +197,14 @@ public class Business {
                             message="The vehicle was not registered. There is not space in the parking lot";
                         }else{
                             parkingLot.saveVehicle(freeSpace, 2, vehicle);
+                        }
+                        break;
+                    case 2011:
+                        freeSpace=lookForSpaceinParkingLot(3);
+                        if(freeSpace==-1){
+                            message="The vehicle was not registered. There is not space in the parking lot";
+                        }else{
+                            parkingLot.saveVehicle(freeSpace, 3, vehicle);
                         }
                         break;
                 }
@@ -258,19 +244,7 @@ public class Business {
             int freeSpace;
             message="The vehicle was registered successfully in the parking lot";
             HybridCar vehicle=new HybridCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume, typeCharger, batteryDuration, batteryConsume);
-            if(model==2011){
-                freeSpace=lookForSpaceinParkingLot(3);
-                if(freeSpace==-1){
-                    freeSpace=lookForSpaceinParkingLot(4);
-                    if(freeSpace==-1){
-                        message="The vehicle was not registered. There is not space in the parking lot";
-                    }else{
-                        parkingLot.saveVehicle(freeSpace, 4, vehicle);
-                    }
-                }else{
-                    parkingLot.saveVehicle(freeSpace, 3, vehicle);
-                }
-            }else if(model<2011){
+            if(model<2011){
                 freeSpace=lookForSpaceinParkingLot(4);
                 if(freeSpace==-1){
                     message="The vehicle was not registered. There is not space in the parking lot";
@@ -284,10 +258,7 @@ public class Business {
                         if(freeSpace==-1){
                             
                             message="The vehicle was not registered. There is not space in the parking lot";
-                        }else{
-                            System.out.println("Im here");
-                            System.out.println(freeSpace);
-                            
+                        }else{                            
                             parkingLot.saveVehicle(freeSpace, 0, vehicle);
                         }
                         break;
@@ -305,6 +276,14 @@ public class Business {
                             message="The vehicle was not registered. There is not space in the parking lot";
                         }else{
                             parkingLot.saveVehicle(freeSpace, 2, vehicle);
+                        }
+                        break;
+                    case 2011:
+                        freeSpace=lookForSpaceinParkingLot(3);
+                        if(freeSpace==-1){
+                            message="The vehicle was not registered. There is not space in the parking lot";
+                        }else{
+                            parkingLot.saveVehicle(freeSpace, 3, vehicle);
                         }
                         break;
                 }
@@ -358,6 +337,47 @@ public class Business {
             }   
         }else{
             message="A seller with that id is already existed";
+        }
+        return message;
+    }
+    
+    /**
+     * It assigns a client to a seller
+     * @param positionSeller The position of the seller in the array sellers
+     * @param positionClient The position of the client in the ArrayList clients
+     * @return A message informing if the client was assigned to the seller
+     */
+    public String assignClient(int positionSeller, int positionClient){
+        String message="";
+        boolean stop=false;
+        boolean clientBussy=false; //If the client is assigned to a seller
+        int quantityClient=0; //Quantity of the clients cared for the seller
+        //Checks if the clients belong to another seller
+        for(int i=0; i<sellers.length && !stop; i++){
+            if(sellers[i]!=null){
+                clientBussy=sellers[i].findClient(clients.get(positionClient));
+                if(clientBussy){
+                    stop=true;
+                    message="This client already belongs to a seller";
+                }
+            }else{
+                stop=true;
+            }
+        }
+        stop=false;
+        for(int i=0; i<sellers[positionSeller].getClients().length && !stop; i++){
+            if(sellers[positionSeller].getClients()[i]!=null){    
+                quantityClient++; 
+            }else{
+                stop=true;
+            }
+        }
+        if(quantityClient==Seller.CLIENTS_IN_CARE){
+            message="This seller can't have more clients in care";
+        }
+        if(!clientBussy && quantityClient<Seller.CLIENTS_IN_CARE){
+            sellers[positionSeller].assignClient(clients.get(positionClient), quantityClient);
+            message="The client was assigned to the seller successfully";
         }
         return message;
     }
