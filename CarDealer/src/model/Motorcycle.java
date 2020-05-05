@@ -29,17 +29,21 @@ public class Motorcycle extends Vehicle implements GasolineConsumable{
      * @param gasolineCapacity The gasoline capacity
      * @param gasolineConsume The gasoline consume
      */
-    public Motorcycle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int type, double gasolineCapacity, double gasolineConsume){
+    public Motorcycle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int type, double gasolineCapacity){
         super(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview);
         this.type=type;
         this.gasolineCapacity=gasolineCapacity;
-        this.gasolineConsume=gasolineConsume;
+        this.gasolineConsume=calculateGasolineConsume();
     }
-
+    
+    /**
+     * It calculates the gasoline consume
+     * @return The gasoline consume
+     */
     @Override
     public double calculateGasolineConsume() {
-        // TODO Auto-generated method stub
-        return 0;
+        double gasolineConsume=gasolineCapacity*(getDisplacement()/90);
+        return gasolineConsume;
     }
 
     //getters

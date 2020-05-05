@@ -32,31 +32,42 @@ public class HybridCar extends Car implements GasolineConsumable, BatteryConsuma
      * @param tintedWindows True if the windows are tinted. False if they don't
      * @param tankCapacity The tank capacity
      * @param typeOfFuel The type of fuel
-     * @param gasolineConsume The gasoline consume
      * @param typeCharger The type of charger 
      * @param batteryDuration The battery duration
-     * @param batteryConsume The battery consume
      */
-    public HybridCar(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel, double gasolineConsume, int typeCharger, double batteryDuration, double batteryConsume){
+    public HybridCar(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel, int typeCharger, double batteryDuration){
         super(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows);
         this.tankCapacity=tankCapacity;
         this.typeOfFuel=typeOfFuel;
-        this.gasolineConsume=gasolineConsume;
+        this.gasolineConsume=calculateGasolineConsume();
         this.typeCharger=typeCharger;
         this.batteryDuration=batteryDuration;
-        this.batteryConsume=batteryConsume;
+        this.batteryConsume=calculateBatteryConsume();
     }
 
+    /**
+     * It calculates the gasoline consume
+     * @return The gasoline consume
+     */
     @Override
     public double calculateGasolineConsume() {
-        // TODO Auto-generated method stub
-        return 0;
+        double gasolineConsume=tankCapacity*(getDisplacement()/110);
+        return gasolineConsume;
     }
 
+    /**
+     * It calculates the battery consume
+     * @return The battery consume
+     */
     @Override
     public double calculateBatteryConsume() {
-        // TODO Auto-generated method stub
-        return 0;
+        double batteryConsume=0;
+        if(typeCharger==FAST){
+            batteryConsume=batteryDuration*(getDisplacement()/100);
+        }else if(typeCharger==NORMAL){
+            batteryConsume=(batteryDuration+5)*(getDisplacement()/100);
+        }
+        return batteryConsume;
     }
 
     //getters

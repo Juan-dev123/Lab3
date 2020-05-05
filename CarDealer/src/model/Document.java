@@ -6,13 +6,14 @@ public abstract class Document {
     private double price;
     private int year;
     private int[][] image;
-    private int code;
+    private String code;
 
     //Methods
     public Document(double price, int year){
         this.price=price;
         this.year=year;
         image=new int[4][4]; 
+        //Initializes the image with random values
         for(int i=0; i<4; i++){
             for(int j=0; j<4; j++){
                 image[i][j]=(int)(Math.random()*49+1);
@@ -45,7 +46,7 @@ public abstract class Document {
     /**
      * @return The code
      */
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
@@ -74,7 +75,7 @@ public abstract class Document {
     /**
      * @param code The code to set
      */
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

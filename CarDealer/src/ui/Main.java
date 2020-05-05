@@ -90,7 +90,6 @@ public class Main{
         double moneyCovered;
         double gasLevels;
         boolean uniqueLicensePlate=true;
-        double gasolineConsume;
         
         System.out.println("Please give this information about the vehicle");
         price=checkDouble("Enter the price", 1);
@@ -142,7 +141,6 @@ public class Main{
                     
                     int typeCharger;
                     double batteryDuration;
-                    double batteryConsume;
                     do{
                         System.out.println("Enter the type of car");
                         System.out.println("1 Sedan");
@@ -178,8 +176,7 @@ public class Main{
                                 System.out.println("3 Diesel");
                                 typeOfFuel=read.nextInt();
                             }while(typeOfFuel>3 || typeOfFuel<1);
-                            gasolineConsume=checkDouble("What is the gasoline consume", 1);
-                            System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume));
+                            System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel));
                             break;
                         case 2:
                             do{
@@ -189,8 +186,7 @@ public class Main{
                                 typeCharger=read.nextInt();
                             }while(typeCharger>2 || typeCharger<1);
                             batteryDuration=checkDouble("Enter the baterry duration", 1);
-                            batteryConsume=checkDouble("Enter the battery consume", 1);
-                            System.out.println(business.registerVehicle(price, brand, model, displacement,mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration, batteryConsume));
+                            System.out.println(business.registerVehicle(price, brand, model, displacement,mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration));
                             break;
                         case 3:
                             tankCapacity=checkDouble("What is the tank capacity?", 1);
@@ -201,7 +197,6 @@ public class Main{
                                 System.out.println("3 Diesel");
                                 typeOfFuel=read.nextInt();
                             }while(typeOfFuel>3 || typeOfFuel<1);
-                            gasolineConsume=checkDouble("What is the gasoline consume", 1);
                             do{
                                 System.out.println("What is the type of charger");
                                 System.out.println("1 Normal");
@@ -209,8 +204,7 @@ public class Main{
                                 typeCharger=read.nextInt();
                             }while(typeCharger>2 || typeCharger<1);
                             batteryDuration=checkDouble("Enter the baterry duration", 1);
-                            batteryConsume=checkDouble("Enter the battery consume", 1);
-                            System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume, typeCharger, batteryDuration, batteryConsume));
+                            System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, typeCharger, batteryDuration));
                             break;
                         default:
                             System.out.println("That option doesn't exist");
@@ -229,8 +223,7 @@ public class Main{
                         type=read.nextInt();
                     }while(type>4 || type<1);
                     gasolineCapacity=checkDouble("Enter the gasoline capacity", 1);
-                    gasolineConsume=checkDouble("Enter the gasoline consume", 1);
-                    System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), type, gasolineCapacity, gasolineConsume));
+                    System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), type, gasolineCapacity));
                     break;
                 default:
                     System.out.println("That option doesn't exist");

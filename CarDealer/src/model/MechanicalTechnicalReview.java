@@ -17,10 +17,28 @@ public class MechanicalTechnicalReview extends Document implements Decodable {
         setCode(decode());
     }
 
+    /**
+     * It decodes the image to obtain the code of the mechanical technical review
+     * @return The code 
+     */
     @Override
-    public int decode() {
-        // TODO Auto-generated method stub
-        return 0;
+    public String decode() {
+        String code="";
+        int a=getImage().length-1;
+        for(int i=0; i<getImage().length; i++){
+            if(i==0){
+                for(int j=0; j<getImage()[i].length; j++){
+                    code=code+getImage()[i][j];
+                }
+            }else if(i>0 && i<getImage().length-1){
+                code=code+getImage()[i][--a];
+            }else{
+                for(int j=0; j<getImage()[i].length; j++){
+                    code=code+getImage()[i][j];
+                }
+            }  
+        }
+        return code;
     }
 
     //getters

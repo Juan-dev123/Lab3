@@ -17,11 +17,25 @@ public class Soat extends Document implements Decodable{
         this.moneyCovered=moneyCovered;
         setCode(decode());
     }
-
+    
+    /**
+     * It decodes the image to obtain the code of the Soat
+     * @return The code 
+     */
     @Override
-    public int decode() {
-        // TODO Auto-generated method stub
-        return 0;
+    public String decode() {
+        String code="";
+        //Travel in L
+        for(int i=0; i<getImage().length;i++){
+            if(i==getImage().length-1){
+                for(int j=0; j<getImage()[i].length; j++){
+                    code=code+getImage()[i][j];
+                }
+            }else{
+                code=code+getImage()[i][0];
+            }
+        }
+        return code;
     }
 
     //getters

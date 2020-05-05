@@ -28,19 +28,27 @@ public class ElecticCar extends Car implements BatteryConsumable{
      * @param tintedWindows True if the windows are tinted. False if they don't
      * @param typeCharger The type of charger 
      * @param batteryDuration The battery duration
-     * @param batteryConsume The battery consume
      */
-    public ElecticCar(double price, String brand, int model,double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, int typeCharger, double batteryDuration, double batteryConsume){
+    public ElecticCar(double price, String brand, int model,double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, int typeCharger, double batteryDuration){
         super(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows);
         this.typeCharger=typeCharger;
         this.batteryDuration=batteryDuration;
-        this.batteryConsume=batteryConsume;
+        batteryConsume=calculateBatteryConsume();
     }
-
+    
+    /**
+     * It calculates the battery consume
+     * @return The battery consume
+     */
     @Override
     public double calculateBatteryConsume() {
-        // TODO Auto-generated method stub
-        return 0;
+        double batteryConsume=0;
+        if(this.typeCharger==NORMAL){
+            batteryConsume=(this.batteryDuration+15)*(getDisplacement()/100);
+        }else if(this.typeCharger==FAST){
+            batteryConsume=(this.batteryDuration+10)*(getDisplacement()/100);
+        }
+        return batteryConsume;
     }
 
     //getters

@@ -27,19 +27,22 @@ public class GasolineCar extends Car implements GasolineConsumable{
      * @param tintedWindows True if the windows are tinted. False if they don't
      * @param tankCapacity The tank capacity
      * @param typeOfFuel The type of fuel
-     * @param gasolineConsume The gasoline consume
      */
-    public GasolineCar(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel, double gasolineConsume){
+    public GasolineCar(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel){
         super(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows);
         this.tankCapacity=tankCapacity;
         this.typeOfFuel=typeOfFuel;
-        this.gasolineConsume=gasolineConsume;
+        this.gasolineConsume=calculateGasolineConsume();
     }
 
+    /**
+     * It calculates the gasoline consume
+     * @return The gasoline consume
+     */
     @Override
     public double calculateGasolineConsume() {
-        // TODO Auto-generated method stub
-        return 0;
+        double gasolineConsume=tankCapacity*(getDisplacement()*100);
+        return gasolineConsume;
     }
 
     //getters

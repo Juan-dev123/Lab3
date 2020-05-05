@@ -34,14 +34,14 @@ public class Business {
         clients=new ArrayList<Client>();
 
         //Vehicles created by default
-        vehicles.add(new Motorcycle(2500000, "Toyota", 2019, 10, 10, true, "ABC123", new Soat(120000, 2017, 1200000), new MechanicalTechnicalReview(120000, 2016, 12.5), 2, 12, 13.5));
-        vehicles.add(new Motorcycle(2500000, "Toyota", 2016, 10, 10, true, "ABC456", new Soat(120000, 2017, 1200000), new MechanicalTechnicalReview(120000, 2016, 12.5), 2, 12, 13.5));
-        vehicles.add(new GasolineCar(35000000, "Renault", 2017, 10, 10, true, "QWE123", new Soat(500000, 2017, 5200000), new MechanicalTechnicalReview(200000, 2016, 20.2), 1, 4, true, 10, 2, 12.5));
-        vehicles.add(new GasolineCar(40000000, "Renault", 2020, 10, 10, true, "QWE456", new Soat(600000, 2017, 6200000), new MechanicalTechnicalReview(300000, 2018, 20.2), 1, 4, false, 10, 2, 12.5));
-        vehicles.add(new ElecticCar(80000000, "Tesla", 2020, 12, 12, true, "ASD123", new Soat(600000, 2020, 6200000), new MechanicalTechnicalReview(300000, 2020, 20.2), 1, 4, true, 2, 100, 100));
-        vehicles.add(new ElecticCar(85000000, "Tesla", 2020, 12, 12, true, "ASD456", new Soat(600000, 2020, 6200000), new MechanicalTechnicalReview(300000, 2020, 25), 1, 4, false, 2, 100, 100));
-        vehicles.add(new HybridCar(120000000, "Kia", 2019, 12, 13, true, "ZXC123", new Soat(1000000, 2020, 10200000), new MechanicalTechnicalReview(1000000, 2018, 27), 1, 4, true, 12, 2, 12, 1, 150, 150));
-        vehicles.add(new HybridCar(110000000, "Kia", 2020, 12, 13, true, "ZXC456", new Soat(900000, 2020, 9200000), new MechanicalTechnicalReview(900000, 2020, 20), 1, 4, true, 12, 2, 12, 1, 125, 125));
+        vehicles.add(new Motorcycle(2500000, "Toyota", 2019, 10, 10, true, "ABC123", new Soat(120000, 2017, 1200000), new MechanicalTechnicalReview(120000, 2016, 12.5), 2, 12));
+        vehicles.add(new Motorcycle(2500000, "Toyota", 2016, 10, 10, true, "ABC456", new Soat(120000, 2017, 1200000), new MechanicalTechnicalReview(120000, 2016, 12.5), 2, 12));
+        vehicles.add(new GasolineCar(35000000, "Renault", 2017, 10, 10, true, "QWE123", new Soat(500000, 2017, 5200000), new MechanicalTechnicalReview(200000, 2016, 20.2), 1, 4, true, 10, 2));
+        vehicles.add(new GasolineCar(40000000, "Renault", 2020, 10, 10, true, "QWE456", new Soat(600000, 2017, 6200000), new MechanicalTechnicalReview(300000, 2018, 20.2), 1, 4, false, 10, 2));
+        vehicles.add(new ElecticCar(80000000, "Tesla", 2020, 12, 12, true, "ASD123", new Soat(600000, 2020, 6200000), new MechanicalTechnicalReview(300000, 2020, 20.2), 1, 4, true, 2, 100));
+        vehicles.add(new ElecticCar(85000000, "Tesla", 2020, 12, 12, true, "ASD456", new Soat(600000, 2020, 6200000), new MechanicalTechnicalReview(300000, 2020, 25), 1, 4, false, 2, 100));
+        vehicles.add(new HybridCar(120000000, "Kia", 2019, 12, 13, true, "ZXC123", new Soat(1000000, 2020, 10200000), new MechanicalTechnicalReview(1000000, 2018, 27), 1, 4, true, 12, 2, 1, 150));
+        vehicles.add(new HybridCar(110000000, "Kia", 2020, 12, 13, true, "ZXC456", new Soat(900000, 2020, 9200000), new MechanicalTechnicalReview(900000, 2020, 20), 1, 4, true, 12, 2, 1, 125));
         
         //Client creted by default
         clients.add(new Client("Camila", "Ceron", 1010, "3145346780", "camila@gmail.com"));
@@ -74,12 +74,11 @@ public class Business {
      * @param mechanicalTechnicalReview The mechanical technical review
      * @param type The type
      * @param gasolineCapacity The gasoline capacity
-     * @param gasolineConsume The gasoline consume
      * @return A message informing that the vehicle was registered
      */
-    public String registerVehicle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int type, double gasolineCapacity, double gasolineConsume){
+    public String registerVehicle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int type, double gasolineCapacity){
         String message;
-        vehicles.add(new Motorcycle(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, type, gasolineCapacity, gasolineConsume));
+        vehicles.add(new Motorcycle(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, type, gasolineCapacity));
         message="The vehicle was registered successfully";
         return message;
     }
@@ -99,15 +98,14 @@ public class Business {
      * @param tintedWindows True if the windows are tinted. False if they don't
      * @param tankCapacity The tank capacity
      * @param typeOfFuel The type of fuel
-     * @param gasolineConsume The gasoline consume
      * @return A message informing that the vehicle was registered
      */
-    public String registerVehicle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel, double gasolineConsume){
+    public String registerVehicle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel){
         String message;
+        GasolineCar vehicle=new GasolineCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel);
         if(saveInParkingLot(model, isNew)){
             int freeSpace;
             message="The vehicle was registered successfully in the parking lot";
-            GasolineCar vehicle=new GasolineCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume);
             if(model<2011){
                 freeSpace=lookForSpaceinParkingLot(4);
                 if(freeSpace==-1){
@@ -153,7 +151,7 @@ public class Business {
                 }
             }
         }else{
-            vehicles.add(new GasolineCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume));
+            vehicles.add(vehicle);
             message="The vehicle was registered successfully in the concessionaire";
         }
         return message;
@@ -178,12 +176,12 @@ public class Business {
      * @param batteryConsume The battery consume
      * @return A message informing that the vehicle was registered
      */
-    public String registerVehicle(double price, String brand, int model, double displacement,double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, int typeCharger, double batteryDuration, double batteryConsume){
+    public String registerVehicle(double price, String brand, int model, double displacement,double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, int typeCharger, double batteryDuration){
         String message;
+        ElecticCar vehicle=new ElecticCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration);
         if(saveInParkingLot(model, isNew)){
             int freeSpace;
             message="The vehicle was registered successfully in the parking lot";
-            ElecticCar vehicle=new ElecticCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration, batteryConsume);
             if(model<2011){
                 freeSpace=lookForSpaceinParkingLot(4);
                 if(freeSpace==-1){
@@ -196,7 +194,6 @@ public class Business {
                     case 2014:
                         freeSpace=lookForSpaceinParkingLot(0);
                         if(freeSpace==-1){
-                            
                             message="The vehicle was not registered. There is not space in the parking lot";
                         }else{
                             parkingLot.saveVehicle(freeSpace, 0, vehicle);
@@ -229,7 +226,7 @@ public class Business {
                 }
             }
         }else{
-            vehicles.add(new ElecticCar(price, brand, model, displacement,mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration, batteryConsume));
+            vehicles.add(vehicle);
             message="The vehicle was registered successfully";
         }
         return message;
@@ -257,12 +254,12 @@ public class Business {
      * @param batteryConsume The battery consume
      * @return A message informing that the vehicle was registered 
      */
-    public String registerVehicle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel, double gasolineConsume, int typeCharger, double batteryDuration, double batteryConsume){
+    public String registerVehicle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel, int typeCharger, double batteryDuration){
         String message;
+        HybridCar vehicle=new HybridCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, typeCharger, batteryDuration);
         if(saveInParkingLot(model, isNew)){
             int freeSpace;
             message="The vehicle was registered successfully in the parking lot";
-            HybridCar vehicle=new HybridCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume, typeCharger, batteryDuration, batteryConsume);
             if(model<2011){
                 freeSpace=lookForSpaceinParkingLot(4);
                 if(freeSpace==-1){
@@ -308,7 +305,7 @@ public class Business {
                 }
             }
         }else{
-            vehicles.add(new HybridCar(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, gasolineConsume, typeCharger, batteryDuration, batteryConsume));
+            vehicles.add(vehicle);
             message="The vehicle was registered successfully";
         }
         return message;
