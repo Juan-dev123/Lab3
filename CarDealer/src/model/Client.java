@@ -27,10 +27,19 @@ public class Client extends Person {
         interestingVehicles=new ArrayList<Vehicle>();
     }
 
+    /**
+     * It adds a vehicle of interest to the client 
+     * @param vehicle The vehicle
+     */
     public void addInterestingVehicle(Vehicle vehicle){
         interestingVehicles.add(vehicle);
     }
 
+    /**
+     * It seaches a vehicle in the interested vehicles of the client
+     * @param licensePlate The license plate of the vehivle
+     * @return The vehicle
+     */
     public Vehicle searchVehicle(String licensePlate){
         Vehicle vehicle=null;
         boolean exist=false;

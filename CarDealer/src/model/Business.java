@@ -401,6 +401,12 @@ public class Business {
         return message;
     }
 
+    /**
+     * It adds a vehicle of interest to a client  
+     * @param id The id of the client
+     * @param licensePlate The license plate of the vehicle
+     * @return A message informing the result
+     */
     public String addVehicleOfInterest(int id, String licensePlate){
         String message="";
         Client client=searchClient(id);

@@ -309,6 +309,9 @@ public class Main{
         }   
     }
 
+    /**
+     * It adds a vehicle of interest to a client 
+     */
     public void addVehicleOfInterest(){
         int id;
         String licensePlate;
