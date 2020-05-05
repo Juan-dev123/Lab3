@@ -29,6 +29,28 @@ public class Business {
         this.totalProfits=0;
         this.totalSales=0;
         sellers=new Seller[10];
+        parkingLot=new ParkingLot();
+        vehicles=new ArrayList<Vehicle>();
+        clients=new ArrayList<Client>();
+
+        //Vehicles created by default
+        vehicles.add(new Motorcycle(2500000, "Toyota", 2019, 10, 10, true, "ABC123", new Soat(120000, 2017, 1200000), new MechanicalTechnicalReview(120000, 2016, 12.5), 2, 12, 13.5));
+        vehicles.add(new Motorcycle(2500000, "Toyota", 2016, 10, 10, true, "ABC456", new Soat(120000, 2017, 1200000), new MechanicalTechnicalReview(120000, 2016, 12.5), 2, 12, 13.5));
+        vehicles.add(new GasolineCar(35000000, "Renault", 2017, 10, 10, true, "QWE123", new Soat(500000, 2017, 5200000), new MechanicalTechnicalReview(200000, 2016, 20.2), 1, 4, true, 10, 2, 12.5));
+        vehicles.add(new GasolineCar(40000000, "Renault", 2020, 10, 10, true, "QWE456", new Soat(600000, 2017, 6200000), new MechanicalTechnicalReview(300000, 2018, 20.2), 1, 4, false, 10, 2, 12.5));
+        vehicles.add(new ElecticCar(80000000, "Tesla", 2020, 12, 12, true, "ASD123", new Soat(600000, 2020, 6200000), new MechanicalTechnicalReview(300000, 2020, 20.2), 1, 4, true, 2, 100, 100));
+        vehicles.add(new ElecticCar(85000000, "Tesla", 2020, 12, 12, true, "ASD456", new Soat(600000, 2020, 6200000), new MechanicalTechnicalReview(300000, 2020, 25), 1, 4, false, 2, 100, 100));
+        vehicles.add(new HybridCar(120000000, "Kia", 2019, 12, 13, true, "ZXC123", new Soat(1000000, 2020, 10200000), new MechanicalTechnicalReview(1000000, 2018, 27), 1, 4, true, 12, 2, 12, 1, 150, 150));
+        vehicles.add(new HybridCar(110000000, "Kia", 2020, 12, 13, true, "ZXC456", new Soat(900000, 2020, 9200000), new MechanicalTechnicalReview(900000, 2020, 20), 1, 4, true, 12, 2, 12, 1, 125, 125));
+        
+        //Client creted by default
+        clients.add(new Client("Camila", "Ceron", 1010, "3145346780", "camila@gmail.com"));
+        clients.add(new Client("Ricardo", "Saavedra", 2020, "3106445634", "ricardo@gmail.com"));
+        clients.add(new Client("Sofia", "Caicedo", 3030, "3124564554", "sofia@gmail.com"));
+        clients.add(new Client("Jerson", "Ramirez", 4040, "3152344553", "jerson@gmail.com"));
+        clients.add(new Client("Laura", "Ceron", 5050, "3124455778", "laura@gmail.com"));
+        clients.add(new Client("Miguel", "Cuellar", 6060, "3172244234", "miguel@gmail.com"));
+
         //Sellers created by default
         sellers[0]= new Seller("Michaela", "Pratt", 1234567);
         sellers[1]= new Seller("Annalise", "Keating", 2345678);
@@ -37,9 +59,6 @@ public class Business {
         sellers[4]= new Seller("Frank", "Delfino", 5678901);
         sellers[5]= new Seller("Bonnie", "Winterbottom", 6789012);
         sellers[6]= new Seller("Oliver", "Hampton", 7890123);
-        parkingLot=new ParkingLot();
-        vehicles=new ArrayList<Vehicle>();
-        clients=new ArrayList<Client>();
     }
 
     /**
@@ -382,19 +401,42 @@ public class Business {
         return message;
     }
 
+    public String addVehicleOfInterest(int id, String licensePlate){
+        String message="";
+        Client client=searchClient(id);
+        Vehicle vehicle=searchVehicle(licensePlate);
+        if(client!=null){
+            if(vehicle!=null){
+                if(client.searchVehicle(licensePlate)==null){
+                    client.addInterestingVehicle(vehicle);
+                    message="The vehicle of interest was added successfully";
+                }else{
+                    message="This vehicle had been previously added";
+                }    
+            }else{
+                message="The vehicle with the license plate "+licensePlate+" doesn't exist"; 
+            }
+        }else{
+            message="The client with the id "+id+" doesn't exist";
+        }
+        return message;
+    }
+
     /**
      * It searches a vehicle
      * @param licensePlate The license plate
-     * @return True if the vechicle exists. False if it doesn't.
+     * @return The vehicle
      */
-    public boolean searchVehicle(String licensePlate){
+    public Vehicle searchVehicle(String licensePlate){
         boolean exist=false;
         boolean stop=false;
+        Vehicle vehicle=null;
         for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
             if(parkingLot.getVehicles()[i]!=null){
                 if(parkingLot.getVehicles()[i].getLicensePlate().equals(licensePlate)){
                     exist=true;
                     stop=true;
+                    vehicle=parkingLot.getVehicles()[i];
                 }
             }else{
                 stop=true;
@@ -403,11 +445,12 @@ public class Business {
         if(!exist){
             for(int i=0; i<vehicles.size() && !exist;i++){
                 if(vehicles.get(i).getLicensePlate().equals(licensePlate)){
+                    vehicle=vehicles.get(i);
                     exist=true;
                 }
             }
         }
-        return exist;
+        return vehicle;
     }
     /**
      * It creates an object type Soat

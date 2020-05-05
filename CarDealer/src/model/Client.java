@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Client extends Person {
     
     //Relations
-    private ArrayList<Vehicle> interestingCars; 
-    private ArrayList<Vehicle> boughtCars;
+    private ArrayList<Vehicle> interestingVehicles; 
+    private ArrayList<Vehicle> boughtVehicles;
     //Atributes
     private String phoneNumber;
     private String email;
@@ -24,7 +24,23 @@ public class Client extends Person {
         super(name, lastName, id);
         this.phoneNumber=phoneNumber;
         this.email=email;
-        interestingCars=new ArrayList<Vehicle>();
+        interestingVehicles=new ArrayList<Vehicle>();
+    }
+
+    public void addInterestingVehicle(Vehicle vehicle){
+        interestingVehicles.add(vehicle);
+    }
+
+    public Vehicle searchVehicle(String licensePlate){
+        Vehicle vehicle=null;
+        boolean exist=false;
+        for(int i=0; i<interestingVehicles.size() && !exist;i++){
+            if(interestingVehicles.get(i).getLicensePlate().equals(licensePlate)){
+                vehicle=interestingVehicles.get(i);
+                exist=true;
+            }
+        }
+        return vehicle;
     }
 
     //getters
@@ -42,18 +58,18 @@ public class Client extends Person {
         return email;
     }
 
-   /** 
-    * @return The interesting cars
+   /**
+    * @return The interesting vehicles
     */
-   public ArrayList<Vehicle> getInterestingCars() {
-       return interestingCars;
+   public ArrayList<Vehicle> getInterestingVehicles() {
+       return interestingVehicles;
    }
 
    /**
-    * @return The bought cars
+    * @return The bought vehicles
     */
-   public ArrayList<Vehicle> getBoughtCars() {
-       return boughtCars;
+   public ArrayList<Vehicle> getBoughtVehicles() {
+       return boughtVehicles;
    }
 
     //setters
@@ -72,16 +88,16 @@ public class Client extends Person {
     }
 
    /**
-    * @param interestingCars The interesting cars to set
+    * @param interestingVehicles The interesting vehicles to set
     */
-   public void setInterestingCars(ArrayList<Vehicle> interestingCars) {
-       this.interestingCars = interestingCars;
+   public void setInterestingVehicles(ArrayList<Vehicle> interestingVehicles) {
+       this.interestingVehicles = interestingVehicles;
    }
 
    /**
-    * @param boughtCars The bought cars to set
+    * @param boughtVehicles The bought vehicles to set
     */
-   public void setBoughtCars(ArrayList<Vehicle> boughtCars) {
-       this.boughtCars = boughtCars;
+   public void setBoughtVehicles(ArrayList<Vehicle> boughtVehicles) {
+       this.boughtVehicles = boughtVehicles;
    }
 }

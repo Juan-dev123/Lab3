@@ -19,12 +19,7 @@ public class Main{
      */
     public Main(){
         read=new Scanner(System.in);
-        System.out.println("What is the name of the business?");
-        String name=read.nextLine();
-        System.out.println("What is the NIT?"); 
-        String nit=read.nextLine();
-        business=new Business(name, nit);
-        clean();
+        business=new Business("Dealer Company", "123.456.789-1");
     }
     /**
      * It prints on screen the menu
@@ -39,6 +34,7 @@ public class Main{
             System.out.println("2 Register a client");
             System.out.println("3 Register a seller");
             System.out.println("4 Assign a client to a seller");
+            System.out.println("5 Assign vehicles of interest to a client");
             option=read.nextInt();
             read.nextLine();
             clean();
@@ -54,6 +50,9 @@ public class Main{
                 break;
             case 4:
                 assignClient();
+                break;
+            case 5:
+                addVehicleOfInterest();
                 break;
             default:
                 System.out.println("That option doesn't exist");
@@ -310,6 +309,16 @@ public class Main{
         }   
     }
 
+    public void addVehicleOfInterest(){
+        int id;
+        String licensePlate;
+        id=checkInt("Please enter the id of the client", 1);
+        read.nextLine();
+        System.out.println("Please enter the license plate of the vehicle");
+        licensePlate=read.nextLine().toUpperCase();
+        System.out.println(business.addVehicleOfInterest(id, licensePlate));  
+    }
+
     /**
      * It checks if a license plate is already existed
      * @param licensePlate The license plate
@@ -318,7 +327,7 @@ public class Main{
     public boolean enterLicensePlate(String licensePlate){
         int option;
         boolean uniqueLicensePlate=true;
-        if(business.searchVehicle(licensePlate)){
+        if(business.searchVehicle(licensePlate)!=null){
                 System.out.println("That license plate is already exists. You have two change it or quit");
                 System.out.println("What do you want to do?");
                do{

@@ -15,6 +15,7 @@ public abstract class Vehicle {
     private double mileage;
     private boolean isNew;
     private String licensePlate;
+    private boolean available;
 
     //Methods
     /**
@@ -39,6 +40,7 @@ public abstract class Vehicle {
         this.licensePlate=licensePlate;
         this.soat=soat;
         this.mechanicalTechnicalReview=mechanicalTechnicalReview;
+        available=true;
     }
 
     //getters
@@ -111,6 +113,12 @@ public abstract class Vehicle {
     public Document getMechanicalTechnicalReview() {
         return mechanicalTechnicalReview;
     }
+    /**
+     * @return The status of the vehicle
+     */
+    public boolean getAvailable(){
+        return available;
+    }
 
     //setters
     /**
@@ -180,5 +188,12 @@ public abstract class Vehicle {
      */
     public void setMechanicalTechnicalReview(Document mechanicalTechnicalReview) {
         this.mechanicalTechnicalReview = mechanicalTechnicalReview;
+    }
+
+    /**
+     * @param available The available to set
+     */
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }
