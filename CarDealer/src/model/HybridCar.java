@@ -43,6 +43,7 @@ public class HybridCar extends Car implements GasolineConsumable, BatteryConsuma
         this.typeCharger=typeCharger;
         this.batteryDuration=batteryDuration;
         this.batteryConsume=calculateBatteryConsume();
+        setTotalPrice(calculateTotalCost());
     }
 
     /**
@@ -68,6 +69,56 @@ public class HybridCar extends Car implements GasolineConsumable, BatteryConsuma
             batteryConsume=(batteryDuration+5)*(getDisplacement()/100);
         }
         return batteryConsume;
+    }
+
+    @Override
+    /**
+     * @return Information about the hybrid car
+     */
+    public String toString() {
+        String message="Hybrid Car\n"+super.toString();
+        String typeOfFuelWord="";
+        switch(typeOfFuel){
+            case 1:
+                typeOfFuelWord="Extra";
+                break;
+            case 2:
+                typeOfFuelWord="Corriente";
+                break;
+            case 3:
+                typeOfFuelWord="Diesel";
+                break;
+        }
+        String typeOfCharge="";
+        switch(typeCharger){
+            case 1:
+                typeOfCharge="Normal";
+                break;
+            case 2:
+                typeOfCharge="Fast";
+                break;
+        }
+        message+="    Tank capacity:"+tankCapacity+"\n"+"    Type of fuel:"+typeOfFuelWord+"\n"+"    Gasoline consume:"+gasolineConsume+"\n"+"    Type of charge:"+typeOfCharge+"\n"+"    Battery duration:"+batteryDuration+"\n"+"    Battery consume:"+batteryConsume+"\n";
+        return message;
+    }
+
+    @Override
+    /**
+     * It calculates the total cost of a hybrid car
+     * @return The total cost
+     */
+    public double calculateTotalCost() {
+        double totalCost=getPrice();
+        totalCost+=totalCost*0.15;
+        if(getIsnew()==false){
+            totalCost-=totalCost*0.1;
+        }
+        if(getSoat()==null || getMechanicalTechnicalReview()==null){
+            totalCost+=500000;
+        }else if(getSoat().getYear()!=2020 && getMechanicalTechnicalReview().getYear()!=2020){
+            totalCost+=500000;
+        }
+        return totalCost;
     }
 
     //getters

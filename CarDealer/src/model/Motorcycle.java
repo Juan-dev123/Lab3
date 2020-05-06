@@ -34,6 +34,7 @@ public class Motorcycle extends Vehicle implements GasolineConsumable{
         this.type=type;
         this.gasolineCapacity=gasolineCapacity;
         this.gasolineConsume=calculateGasolineConsume();
+        setTotalPrice(calculateTotalCost());
     }
     
     /**
@@ -44,6 +45,48 @@ public class Motorcycle extends Vehicle implements GasolineConsumable{
     public double calculateGasolineConsume() {
         double gasolineConsume=gasolineCapacity*(getDisplacement()/90);
         return gasolineConsume;
+    }
+
+    @Override
+    public String toString() {
+        String typeWord="";
+        switch(type){
+            case 1:
+                typeWord="Standard";
+                break;
+            case 2:
+                typeWord="Sporty";
+                break;
+            case 3:
+                typeWord="Scooter";
+                break;
+            case 4:
+                typeWord="Cross";
+                break;
+        }
+        String message="Motorcycle\n"+super.toString();
+        message+="    Type:"+typeWord+"\n"+"    Gasoline capacity:"+gasolineCapacity+"\n"+"    Gasoline consume:"+gasolineConsume+"\n";
+        return message;
+    }
+
+    @Override
+    /**
+     * It calculates the total cost of a motorcycle
+     * @return The total cost
+     */
+    public double calculateTotalCost() {
+        double totalCost=getPrice();
+        totalCost+=totalCost*0.04;
+        if(getIsnew()==false){
+            totalCost-=totalCost*0.02;
+        }
+        if(getSoat()==null || getMechanicalTechnicalReview()==null){
+            totalCost+=500000;
+        }else if(getSoat().getYear()!=2020 && getMechanicalTechnicalReview().getYear()!=2020){
+            totalCost+=500000;
+        }
+        
+        return totalCost;
     }
 
     //getters

@@ -34,6 +34,34 @@ public abstract class Car extends Vehicle {
         this.tintedWindows=tintedWindows;
     }
 
+    @Override
+    /**
+     * @return Information about the car
+     */
+    public String toString() {
+        String typeOfCarWord="";
+        String tinted;
+        String message=super.toString();
+        switch(typeOfCar){
+            case 1:
+                typeOfCarWord="Sedan";
+                break;
+            case 2:
+                typeOfCarWord="Van";
+                break;
+        }
+        if(tintedWindows){
+            tinted="Yes";
+        }else{
+            tinted="No";
+        }
+        
+        message+="    Type of car:"+typeOfCarWord+"\n"+"    Number of doors:"+numberOfDoors+"\n"+"    Are the windows tinted?:"+tinted+"\n";
+        return message;
+    }
+
+    public abstract double calculateTotalCost(); 
+
     //getters
     /**
      * @return The type of car

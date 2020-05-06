@@ -33,6 +33,7 @@ public class GasolineCar extends Car implements GasolineConsumable{
         this.tankCapacity=tankCapacity;
         this.typeOfFuel=typeOfFuel;
         this.gasolineConsume=calculateGasolineConsume();
+        setTotalPrice(calculateTotalCost());
     }
 
     /**
@@ -43,6 +44,46 @@ public class GasolineCar extends Car implements GasolineConsumable{
     public double calculateGasolineConsume() {
         double gasolineConsume=tankCapacity*(getDisplacement()*100);
         return gasolineConsume;
+    }
+
+    @Override
+    /**
+     * @return Information about the gasoline car
+     */
+    public String toString() {
+        String message="Gasoline Car\n"+super.toString();
+        String typeOfFuelWord="";
+        switch(typeOfFuel){
+            case 1:
+                typeOfFuelWord="Extra";
+                break;
+            case 2:
+                typeOfFuelWord="Corriente";
+                break;
+            case 3:
+                typeOfFuelWord="Diesel";
+                break;
+        }
+        message+="    Tank capacity:"+tankCapacity+"\n"+"    Type of fuel:"+typeOfFuelWord+"\n"+"    Gasoline consume:"+gasolineConsume+"\n";
+        return message;
+    }
+
+    @Override
+    /**
+     * It calculates the total cost of a gasoline car
+     * @return The total cost
+     */
+    public double calculateTotalCost() {
+        double totalCost=getPrice();
+        if(getIsnew()==false){
+            totalCost-=totalCost*0.1;
+        }
+        if(getSoat()==null || getMechanicalTechnicalReview()==null){
+            totalCost+=500000;
+        }else if(getSoat().getYear()!=2020 && getMechanicalTechnicalReview().getYear()!=2020){
+            totalCost+=500000;
+        }
+        return totalCost;
     }
 
     //getters

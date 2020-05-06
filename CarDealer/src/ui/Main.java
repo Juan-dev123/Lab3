@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import model.Business;
 
@@ -82,20 +83,20 @@ public class Main{
         double mileage;
         boolean isNew;
         char answer;
-        String licensePlate;
-        double priceS;
-        double priceM;
-        int yearS;
-        int yearM;
-        double moneyCovered;
-        double gasLevels;
+        String licensePlate="";
+        double priceS=0;
+        double priceM=0;
+        int yearS=0;
+        int yearM=0;
+        double moneyCovered=0;
+        double gasLevels=0;
         boolean uniqueLicensePlate=true;
         
         System.out.println("Please give this information about the vehicle");
         price=checkDouble("Enter the price", 1);
         read.nextLine();
         System.out.println("Enter the brand");
-        brand=read.nextLine();
+        brand=read.nextLine().toUpperCase();
         model=checkInt("Enter the model", 1950);
         displacement=checkDouble("Enter the displacement", 1);
         mileage=checkDouble("Enter the mileage", 1);
@@ -109,23 +110,27 @@ public class Main{
         }else{
             isNew=false;
         }
-        System.out.println("Enter the license plate");
-        licensePlate=read.nextLine().toUpperCase();
-        uniqueLicensePlate=enterLicensePlate(licensePlate);
+        if(isNew==false){
+            System.out.println("Enter the license plate");
+            licensePlate=read.nextLine().toUpperCase();
+            uniqueLicensePlate=enterLicensePlate(licensePlate);
+            if(uniqueLicensePlate){
+                clean();
+                //soat
+                System.out.println("Please give this information about the soat");
+                priceS=checkDouble("What is the price?", 1);
+                yearS=checkInt("What is the year?", 1984);
+                moneyCovered=checkDouble("What is the money that cover an accident to third parties", 1);
+                clean();
+                //mechanical technical review
+                System.out.println("Please give this information about the mechanical technical review");
+                priceM=checkDouble("What is the price?", 1);
+                yearM=checkInt("What is the year?", 1950);
+                gasLevels=checkDouble("What were the gases levels?", 1);
+            }    
+        }
+        clean();
         if(uniqueLicensePlate){
-            clean();
-            //soat
-            System.out.println("Please give this information about the soat");
-            priceS=checkDouble("What is the price?", 1);
-            yearS=checkInt("What is the year?", 1984);
-            moneyCovered=checkDouble("What is the money that cover an accident to third parties", 1);
-            clean();
-            //mechanical technical review
-            System.out.println("Please give this information about the mechanical technical review");
-            priceM=checkDouble("What is the price?", 1);
-            yearM=checkInt("What is the year?", 1950);
-            gasLevels=checkDouble("What were the gases levels?", 1);
-            clean();
             System.out.println("What do you want to register?");
             System.out.println("1 Car");
             System.out.println("2 Motorcycle");
@@ -176,7 +181,11 @@ public class Main{
                                 System.out.println("3 Diesel");
                                 typeOfFuel=read.nextInt();
                             }while(typeOfFuel>3 || typeOfFuel<1);
-                            System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel));
+                            if(isNew==true){
+                                System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, "", null, null, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel));
+                            }else{
+                                System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel));
+                            }
                             break;
                         case 2:
                             do{
@@ -186,7 +195,11 @@ public class Main{
                                 typeCharger=read.nextInt();
                             }while(typeCharger>2 || typeCharger<1);
                             batteryDuration=checkDouble("Enter the baterry duration", 1);
-                            System.out.println(business.registerVehicle(price, brand, model, displacement,mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration));
+                            if(isNew==true){
+                                System.out.println(business.registerVehicle(price, brand, model, displacement,mileage, isNew, licensePlate, null, null, typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration));
+                            }else{
+                                System.out.println(business.registerVehicle(price, brand, model, displacement,mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, typeCharger, batteryDuration));
+                            }
                             break;
                         case 3:
                             tankCapacity=checkDouble("What is the tank capacity?", 1);
@@ -204,7 +217,11 @@ public class Main{
                                 typeCharger=read.nextInt();
                             }while(typeCharger>2 || typeCharger<1);
                             batteryDuration=checkDouble("Enter the baterry duration", 1);
-                            System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, typeCharger, batteryDuration));
+                            if(isNew==true){
+                                System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, null, null, typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, typeCharger, batteryDuration));
+                            }else{
+                                System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), typeOfCar, numberOfDoors, tintedWindows, tankCapacity, typeOfFuel, typeCharger, batteryDuration));
+                            }
                             break;
                         default:
                             System.out.println("That option doesn't exist");
@@ -223,14 +240,18 @@ public class Main{
                         type=read.nextInt();
                     }while(type>4 || type<1);
                     gasolineCapacity=checkDouble("Enter the gasoline capacity", 1);
-                    System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), type, gasolineCapacity));
+                    if(isNew==true){
+                        System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, null, null, type, gasolineCapacity));
+                    }else{
+                        System.out.println(business.registerVehicle(price, brand, model, displacement, mileage, isNew, licensePlate, business.createSoat(priceS, yearS, moneyCovered), business.createMTR(priceM, yearM, gasLevels), type, gasolineCapacity));
+                    }               
                     break;
                 default:
                     System.out.println("That option doesn't exist");
                     break;
             }
             read.nextLine();
-        }
+        }   
     }
 
     /**
@@ -307,12 +328,89 @@ public class Main{
      */
     public void addVehicleOfInterest(){
         int id;
-        String licensePlate;
-        id=checkInt("Please enter the id of the client", 1);
+        int option;
+        int numberVehicles;
+        int positionVehicle=0;
+        boolean stop=false;
+        do{
+            id=checkInt("Please enter the id of the client", 1);
+            read.nextLine();
+        }while(business.searchClient(id)==null);
+        System.out.println("With what do you want to search for the vehicle?");
+        System.out.println("1 License plate");
+        System.out.println("2 Brand");
+        System.out.println("3 Model");
+        System.out.println("4 Displacement");
+        option=read.nextInt();
         read.nextLine();
-        System.out.println("Please enter the license plate of the vehicle");
-        licensePlate=read.nextLine().toUpperCase();
-        System.out.println(business.addVehicleOfInterest(id, licensePlate));  
+        switch(option){
+            case 1:
+                String licensePlate;
+                System.out.println("Enter the license plate");
+                licensePlate=read.nextLine().toUpperCase();
+                System.out.println(business.addVehicleOfInterest(id, licensePlate));
+                
+                break;
+            case 2:
+                String brand;
+                System.out.println("Enter the brand");
+                brand=read.nextLine().toUpperCase();
+                do{
+                    clean();
+                    System.out.println("Choose a vehicle");
+                    numberVehicles=printVehicles(business.lookForVehicles(brand));
+                    if(numberVehicles==0){
+                        stop=true;
+                    }else{
+                        positionVehicle=read.nextInt();
+                    }
+                }while((positionVehicle<1 || positionVehicle>numberVehicles) && !stop);
+                if(stop==false){
+                    System.out.println(business.addVehicleOfInterest(id, business.lookForVehicles(brand).get(positionVehicle-1)));
+                    read.nextLine();
+                }
+                break;
+            case 3:
+                int model;
+                model=checkInt("Enter the model", 1950);
+                do{
+                    clean();
+                    System.out.println("Choose a vehicle");
+                    numberVehicles=printVehicles(business.lookForVehicles(model));
+                    if(numberVehicles==0){
+                        stop=true;
+                    }else{
+                        positionVehicle=read.nextInt();
+                    }
+                }while((positionVehicle<1 || positionVehicle>numberVehicles) && !stop);
+                if(stop==false){
+                    System.out.println(business.addVehicleOfInterest(id, business.lookForVehicles(model).get(positionVehicle-1)));  
+                }
+                read.nextLine();
+                break;
+            case 4:
+                double displacement;
+                displacement=checkDouble("Enter the displacement", 1);
+                do{
+                    clean();
+                    System.out.println("Choose a vehicle");
+                    numberVehicles=printVehicles(business.lookForVehicles(displacement));
+                    if(numberVehicles==0){
+                        stop=true;
+                    }else{
+                        positionVehicle=read.nextInt();
+                    }
+                }while((positionVehicle<1 || positionVehicle>numberVehicles) && !stop);
+                if(stop==false){
+                    System.out.println(business.addVehicleOfInterest(id, business.lookForVehicles(displacement).get(positionVehicle-1)));    
+                }
+                read.nextLine();
+                break;
+            default:
+                System.out.println("That option doesn't exist");
+                break;
+        }
+          
     }
 
     /**
@@ -383,6 +481,18 @@ public class Main{
             System.out.printf("%d Name:%s %s%n  Id:%d%n",i+1,business.getClients().get(i).getName(), business.getClients().get(i).getLastName(), business.getClients().get(i).getId());
         }
         return numberClients;
+    }
+
+    public int printVehicles(ArrayList vehicles){
+        int numberVehicles=vehicles.size();
+        if(vehicles.size()==0){
+            System.out.println("There are not vehicles with that characteristic");
+        }else{
+            for(int i=0; i<vehicles.size(); i++){
+                System.out.printf("%d   %s%n",i+1,vehicles.get(i).toString());
+            }
+        }
+        return numberVehicles;
     }
 
     /**

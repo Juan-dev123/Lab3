@@ -34,14 +34,14 @@ public class Business {
         clients=new ArrayList<Client>();
 
         //Vehicles created by default
-        vehicles.add(new Motorcycle(2500000, "Toyota", 2019, 10, 10, true, "ABC123", new Soat(120000, 2017, 1200000), new MechanicalTechnicalReview(120000, 2016, 12.5), 2, 12));
-        vehicles.add(new Motorcycle(2500000, "Toyota", 2016, 10, 10, true, "ABC456", new Soat(120000, 2017, 1200000), new MechanicalTechnicalReview(120000, 2016, 12.5), 2, 12));
-        vehicles.add(new GasolineCar(35000000, "Renault", 2017, 10, 10, true, "QWE123", new Soat(500000, 2017, 5200000), new MechanicalTechnicalReview(200000, 2016, 20.2), 1, 4, true, 10, 2));
-        vehicles.add(new GasolineCar(40000000, "Renault", 2020, 10, 10, true, "QWE456", new Soat(600000, 2017, 6200000), new MechanicalTechnicalReview(300000, 2018, 20.2), 1, 4, false, 10, 2));
-        vehicles.add(new ElecticCar(80000000, "Tesla", 2020, 12, 12, true, "ASD123", new Soat(600000, 2020, 6200000), new MechanicalTechnicalReview(300000, 2020, 20.2), 1, 4, true, 2, 100));
-        vehicles.add(new ElecticCar(85000000, "Tesla", 2020, 12, 12, true, "ASD456", new Soat(600000, 2020, 6200000), new MechanicalTechnicalReview(300000, 2020, 25), 1, 4, false, 2, 100));
-        vehicles.add(new HybridCar(120000000, "Kia", 2019, 12, 13, true, "ZXC123", new Soat(1000000, 2020, 10200000), new MechanicalTechnicalReview(1000000, 2018, 27), 1, 4, true, 12, 2, 1, 150));
-        vehicles.add(new HybridCar(110000000, "Kia", 2020, 12, 13, true, "ZXC456", new Soat(900000, 2020, 9200000), new MechanicalTechnicalReview(900000, 2020, 20), 1, 4, true, 12, 2, 1, 125));
+        vehicles.add(new Motorcycle(2500000, "TOYOTA", 2019, 10, 10, true, "", null, null, 2, 12));
+        vehicles.add(new Motorcycle(2500000, "TOYOTA", 2016, 10, 10, false, "ABC456", new Soat(120000, 2017, 1200000), new MechanicalTechnicalReview(120000, 2016, 12.5), 2, 12));
+        vehicles.add(new GasolineCar(35000000, "RENAULT", 2017, 10, 10, true, "", null, null, 1, 4, true, 10, 2));
+        vehicles.add(new GasolineCar(40000000, "RENAULT", 2020, 10, 10, false, "QWE456", new Soat(600000, 2017, 6200000), new MechanicalTechnicalReview(300000, 2018, 20.2), 1, 4, false, 10, 2));
+        vehicles.add(new ElecticCar(80000000, "TESLA", 2020, 12, 12, true, "", null, null, 1, 4, true, 2, 100));
+        vehicles.add(new ElecticCar(85000000, "TESLA", 2020, 12, 12, false, "ASD456", new Soat(600000, 2020, 6200000), new MechanicalTechnicalReview(300000, 2020, 25), 1, 4, false, 2, 100));
+        vehicles.add(new HybridCar(120000000, "KIA", 2019, 12, 13, true, "", null, null, 1, 4, true, 12, 2, 1, 150));
+        vehicles.add(new HybridCar(110000000, "KIA", 2020, 12, 13, false, "ZXC456", new Soat(900000, 2020, 9200000), new MechanicalTechnicalReview(900000, 2020, 20), 1, 4, true, 12, 2, 1, 125));
         
         //Client creted by default
         clients.add(new Client("Camila", "Ceron", 1010, "3145346780", "camila@gmail.com"));
@@ -173,7 +173,6 @@ public class Business {
      * @param tintedWindows True if the windows are tinted. False if they don't
      * @param typeCharger The type of charger 
      * @param batteryDuration The battery duration
-     * @param batteryConsume The battery consume
      * @return A message informing that the vehicle was registered
      */
     public String registerVehicle(double price, String brand, int model, double displacement,double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, int typeCharger, double batteryDuration){
@@ -248,10 +247,8 @@ public class Business {
      * @param tintedWindows True if the windows are tinted. False if they don't
      * @param tankCapacity The tank capacity
      * @param typeOfFuel The type of fuel
-     * @param gasolineConsume The gasoline consume
      * @param typeCharger The type of charger 
      * @param batteryDuration The battery duration
-     * @param batteryConsume The battery consume
      * @return A message informing that the vehicle was registered 
      */
     public String registerVehicle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int typeOfCar, int numberOfDoors, boolean tintedWindows, double tankCapacity, int typeOfFuel, int typeCharger, double batteryDuration){
@@ -408,20 +405,29 @@ public class Business {
         String message="";
         Client client=searchClient(id);
         Vehicle vehicle=searchVehicle(licensePlate);
-        if(client!=null){
-            if(vehicle!=null){
-                if(client.searchVehicle(licensePlate)==null){
-                    client.addInterestingVehicle(vehicle);
-                    message="The vehicle of interest was added successfully";
-                }else{
-                    message="This vehicle had been previously added";
-                }    
+        if(vehicle!=null){
+            if(client.searchVehicle(licensePlate)==null){
+                client.addInterestingVehicle(vehicle);
+                message="The vehicle of interest was added successfully";
             }else{
-                message="The vehicle with the license plate "+licensePlate+" doesn't exist"; 
-            }
+                message="This vehicle had been previously added";
+            }    
         }else{
-            message="The client with the id "+id+" doesn't exist";
+            message="The vehicle with the license plate "+licensePlate+" doesn't exist"; 
         }
+        return message;
+    }
+    /**
+     * It adds a vehicle of interest to a client  
+     * @param id The id of the client
+     * @param vehicle The vehicle
+     * @return A message informing the result
+     */
+    public String addVehicleOfInterest(int id, Vehicle vehicle){
+        String message="";
+        Client client=searchClient(id);
+        client.addInterestingVehicle(vehicle);
+        message="The vehicle of interest was added successfully";
         return message;
     }
 
@@ -434,6 +440,7 @@ public class Business {
         boolean exist=false;
         boolean stop=false;
         Vehicle vehicle=null;
+        //Search in the parking lot
         for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
             if(parkingLot.getVehicles()[i]!=null){
                 if(parkingLot.getVehicles()[i].getLicensePlate().equals(licensePlate)){
@@ -545,6 +552,84 @@ public class Business {
             
         }
         return seller;
+    }
+
+    /**
+     * Look for vehicles with the brand
+     * @param brand The brand
+     * @return All the vehicles with that brand
+     */
+    public ArrayList<Vehicle> lookForVehicles(String brand){
+        ArrayList<Vehicle> foundVehicles=new ArrayList<Vehicle>(); 
+        for(int i=0; i<vehicles.size(); i++){
+            if(vehicles.get(i).getBrand().equals(brand) && vehicles.get(i).getAvailable()){
+                foundVehicles.add(vehicles.get(i));
+            }
+        }
+        boolean stop=false;
+        //Search in the parking lot
+        for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+            if(parkingLot.getVehicles()[i]!=null){
+                if(parkingLot.getVehicles()[i].getBrand().equals(brand) && parkingLot.getVehicles()[i].getAvailable()){
+                    foundVehicles.add(parkingLot.getVehicles()[i]);
+                }
+            }else{
+                stop=true;
+            }
+        }
+        return foundVehicles;
+    }
+
+    /**
+     * Look for vehicles with the model
+     * @param model The model
+     * @return All the vehicles with that model
+     */
+    public ArrayList<Vehicle> lookForVehicles(int model){
+        ArrayList<Vehicle> foundVehicles=new ArrayList<Vehicle>(); 
+        for(int i=0; i<vehicles.size(); i++){
+            if(vehicles.get(i).getModel()==model && vehicles.get(i).getAvailable()){
+                foundVehicles.add(vehicles.get(i));
+            }
+        }
+        boolean stop=false;
+        //Search in the parking lot
+        for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+            if(parkingLot.getVehicles()[i]!=null){
+                if(parkingLot.getVehicles()[i].getModel()==model && parkingLot.getVehicles()[i].getAvailable()){
+                    foundVehicles.add(parkingLot.getVehicles()[i]);
+                }
+            }else{
+                stop=true;
+            }
+        }
+        return foundVehicles;
+    }
+
+    /**
+     * Look for vehicles with the model
+     * @param displacement The displacement
+     * @return All the vehicles with that displacement
+     */
+    public ArrayList<Vehicle> lookForVehicles(double displacement){
+        ArrayList<Vehicle> foundVehicles=new ArrayList<Vehicle>(); 
+        for(int i=0; i<vehicles.size(); i++){
+            if(vehicles.get(i).getDisplacement()==displacement && vehicles.get(i).getAvailable()){
+                foundVehicles.add(vehicles.get(i));
+            }
+        }
+        boolean stop=false;
+        //Search in the parking lot
+        for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+            if(parkingLot.getVehicles()[i]!=null){
+                if(parkingLot.getVehicles()[i].getDisplacement()==displacement && parkingLot.getVehicles()[i].getAvailable()){
+                    foundVehicles.add(parkingLot.getVehicles()[i]);
+                }
+            }else{
+                stop=true;
+            }
+        }
+        return foundVehicles;
     }
 
     //getters

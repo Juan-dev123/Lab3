@@ -42,6 +42,47 @@ public abstract class Vehicle {
         this.mechanicalTechnicalReview=mechanicalTechnicalReview;
         available=true;
     }
+    
+    @Override
+    /**
+     * @return Information about the vehicle
+     */
+    public String toString() {
+        String status;
+        String licenseP;
+        String soatStatus="Up to date";
+        String MTRStatus="Up to date";
+        if(isNew==true){
+            status="New";
+        }else{
+            status="Used";
+        }
+        if(licensePlate.equals("")){
+            licenseP="It doesn't have";
+        }else{
+            licenseP=licensePlate;
+        }
+        if(soat==null){
+            soatStatus="It doesn't have";
+        }else if(soat.getYear()!=2020){
+            soatStatus="Expired";
+        }
+        if(mechanicalTechnicalReview==null){
+            MTRStatus="It doesn't have";
+        }else if(mechanicalTechnicalReview.getYear()!=2020){
+            MTRStatus="Expired";
+        }
+
+        String message="    Total price:"+totalPrice+"\n"+"    Price:"+price+"\n"+"    Brand:"+brand+"\n"+"    Model:"+model+"\n"+"    Displacement:"+displacement+"\n"+"    Mileage:"+mileage+"\n"+"    Status:"+status+"\n"+"    License plate:"+licenseP+"\n"+"    Soat:"+soatStatus+"\n"+"    Mechanical Technical Review:"+MTRStatus+"\n";
+
+        return message;
+    }
+
+    /**
+     * It calculates the total cost of a vehicle
+     * @return The total cost
+     */
+    public abstract double calculateTotalCost();
 
     //getters
     /**

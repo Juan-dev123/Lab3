@@ -34,13 +34,15 @@ public class ElecticCar extends Car implements BatteryConsumable{
         this.typeCharger=typeCharger;
         this.batteryDuration=batteryDuration;
         batteryConsume=calculateBatteryConsume();
+        setTotalPrice(calculateTotalCost());
     }
     
+    
+    @Override
     /**
      * It calculates the battery consume
      * @return The battery consume
      */
-    @Override
     public double calculateBatteryConsume() {
         double batteryConsume=0;
         if(this.typeCharger==NORMAL){
@@ -49,6 +51,44 @@ public class ElecticCar extends Car implements BatteryConsumable{
             batteryConsume=(this.batteryDuration+10)*(getDisplacement()/100);
         }
         return batteryConsume;
+    }
+
+    @Override
+    /**
+     * @return Information about the electric car
+     */
+    public String toString() {
+        String message="Electric Car\n"+super.toString();
+        String typeOfCharge="";
+        switch(typeCharger){
+            case 1:
+                typeOfCharge="Normal";
+                break;
+            case 2:
+                typeOfCharge="Fast";
+                break;
+        }
+        message+="    Type of charge:"+typeOfCharge+"\n"+"    Battery duration:"+batteryDuration+"\n"+"    Battery consume:"+batteryConsume+"\n";
+        return message;
+    }
+
+    @Override
+    /**
+     * It calculates the total cost of an electric car
+     * @return The total cost
+     */
+    public double calculateTotalCost() {
+        double totalCost=getPrice();
+        totalCost+=totalCost*0.2;
+        if(getIsnew()==false){
+            totalCost-=totalCost*0.1;
+        }
+        if(getSoat()==null || getMechanicalTechnicalReview()==null){
+            totalCost+=500000;
+        }else if(getSoat().getYear()!=2020 && getMechanicalTechnicalReview().getYear()!=2020){
+            totalCost+=500000;
+        }
+        return totalCost;
     }
 
     //getters
