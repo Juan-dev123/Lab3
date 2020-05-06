@@ -410,7 +410,7 @@ public class Business {
                 client.addInterestingVehicle(vehicle);
                 message="The vehicle of interest was added successfully";
             }else{
-                message="This vehicle had been previously added";
+                message="This vehicle had already been added";
             }    
         }else{
             message="The vehicle with the license plate "+licensePlate+" doesn't exist"; 
@@ -426,8 +426,12 @@ public class Business {
     public String addVehicleOfInterest(int id, Vehicle vehicle){
         String message="";
         Client client=searchClient(id);
-        client.addInterestingVehicle(vehicle);
-        message="The vehicle of interest was added successfully";
+        if(lookForVehicle(client.getInterestingVehicles(), vehicle)){
+            message="This vehicle had already been added";
+        }else{
+            client.addInterestingVehicle(vehicle);
+            message="The vehicle of interest was added successfully";
+        } 
         return message;
     }
 
@@ -632,6 +636,21 @@ public class Business {
         return foundVehicles;
     }
 
+    /**
+     * It look for a vehicle in an ArrayList type Vehicle
+     * @param array The ArrayList type Vehicle
+     * @param vehicle The vehicle
+     * @return True if the vehicle exist. False if it doesn't
+     */
+    public boolean lookForVehicle(ArrayList<Vehicle> array, Vehicle vehicle){
+        boolean exist=false;
+        for(int i=0; i<array.size() && !exist; i++){
+            if(array.get(i)==vehicle){
+                exist=true;
+            }
+        }
+        return exist;
+    }
     //getters
     /**
      * @return The name

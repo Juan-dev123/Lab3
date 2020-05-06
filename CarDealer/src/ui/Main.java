@@ -36,6 +36,7 @@ public class Main{
             System.out.println("3 Register a seller");
             System.out.println("4 Assign a client to a seller");
             System.out.println("5 Assign vehicles of interest to a client");
+            System.out.println("6 Show the vehicles of interest of a client");
             option=read.nextInt();
             read.nextLine();
             clean();
@@ -54,6 +55,9 @@ public class Main{
                 break;
             case 5:
                 addVehicleOfInterest();
+                break;
+            case 6:
+                showVehiclesOfInterest();
                 break;
             default:
                 System.out.println("That option doesn't exist");
@@ -413,6 +417,15 @@ public class Main{
           
     }
 
+    public void showVehiclesOfInterest(){
+        int id;
+        do{
+            id=checkInt("Please enter the id of the client", 1);
+            read.nextLine();
+        }while(business.searchClient(id)==null);
+        printVehicles(business.searchClient(id).getInterestingVehicles());
+    }
+
     /**
      * It checks if a license plate is already existed
      * @param licensePlate The license plate
@@ -486,7 +499,7 @@ public class Main{
     public int printVehicles(ArrayList vehicles){
         int numberVehicles=vehicles.size();
         if(vehicles.size()==0){
-            System.out.println("There are not vehicles with that characteristic");
+            System.out.println("There are not vehicles");
         }else{
             for(int i=0; i<vehicles.size(); i++){
                 System.out.printf("%d   %s%n",i+1,vehicles.get(i).toString());
