@@ -82,7 +82,7 @@ public class Motorcycle extends Vehicle implements GasolineConsumable{
         }
         if(getSoat()==null || getMechanicalTechnicalReview()==null){
             totalCost+=500000;
-        }else if(getSoat().getYear()!=2020 && getMechanicalTechnicalReview().getYear()!=2020){
+        }else if(getSoat().getYear()!=Document.CURRENT_YEAR && getMechanicalTechnicalReview().getYear()!=Document.CURRENT_YEAR){
             totalCost+=500000;
         }
         

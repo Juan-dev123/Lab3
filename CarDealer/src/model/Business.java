@@ -435,6 +435,21 @@ public class Business {
         return message;
     }
 
+    public String makeDiscount(double percentage, Vehicle vehicle){
+        String message="The new data of the vehicle is:\n";
+        double totalPrice=vehicle.getTotalPrice();
+        if((vehicle.getSoat()==null || vehicle.getMechanicalTechnicalReview()==null) || (vehicle.getSoat().getYear()!=Document.CURRENT_YEAR && vehicle.getMechanicalTechnicalReview().getYear()!=Document.CURRENT_YEAR)){
+            totalPrice-=500000;
+        }
+        totalPrice-=totalPrice*percentage;
+        if((vehicle.getSoat()==null || vehicle.getMechanicalTechnicalReview()==null) || (vehicle.getSoat().getYear()!=Document.CURRENT_YEAR && vehicle.getMechanicalTechnicalReview().getYear()!=Document.CURRENT_YEAR)){
+            totalPrice+=500000;
+        }
+        vehicle.setTotalPrice(totalPrice);
+        message+=vehicle.toString();
+        return message;
+    }
+
     /**
      * It searches a vehicle
      * @param licensePlate The license plate

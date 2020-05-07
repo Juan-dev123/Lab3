@@ -37,6 +37,7 @@ public class Main{
             System.out.println("4 Assign a client to a seller");
             System.out.println("5 Assign vehicles of interest to a client");
             System.out.println("6 Show the vehicles of interest of a client");
+            System.out.println("7 Make a discount in the total price of a vehicle");
             option=read.nextInt();
             read.nextLine();
             clean();
@@ -58,6 +59,9 @@ public class Main{
                 break;
             case 6:
                 showVehiclesOfInterest();
+                break;
+            case 7:
+                makeDiscount();
                 break;
             default:
                 System.out.println("That option doesn't exist");
@@ -417,6 +421,9 @@ public class Main{
           
     }
 
+    /**
+     * It shows the vehicles of interest of a client
+     */
     public void showVehiclesOfInterest(){
         int id;
         do{
@@ -424,6 +431,117 @@ public class Main{
             read.nextLine();
         }while(business.searchClient(id)==null);
         printVehicles(business.searchClient(id).getInterestingVehicles());
+    }
+
+    public void makeDiscount(){
+        double percentage;
+        int numberVehicles;
+        boolean stop=false;
+        int positionVehicle=0;
+        System.out.println("With what do you want to search for the vehicle?");
+        System.out.println("1 License plate");
+        System.out.println("2 Brand");
+        System.out.println("3 Model");
+        System.out.println("4 Displacement");
+        int option=read.nextInt();
+        read.nextLine();
+        switch(option){
+            case 1:
+                String licensePlate;
+                System.out.println("Enter the license plate");
+                licensePlate=read.nextLine().toUpperCase();
+                if(business.searchVehicle(licensePlate)==null){
+                    System.out.println("It is not exist a vehicle with the license plate "+licensePlate);
+                }else{
+                    System.out.println(business.searchVehicle(licensePlate));
+                    do{
+                        System.out.println("How many percentage do you want to discount?");
+                        percentage=read.nextDouble();
+                    }while(percentage<1 || percentage>100);
+                    percentage/=100;
+                    System.out.println(business.makeDiscount(percentage, business.searchVehicle(licensePlate)));
+                }
+                break;
+            case 2:
+                String brand;
+                System.out.println("Enter the brand");
+                brand=read.nextLine().toUpperCase();
+                do{
+                    clean();
+                    System.out.println("Choose a vehicle");
+                    numberVehicles=printVehicles(business.lookForVehicles(brand));
+                    if(numberVehicles==0){
+                        stop=true;
+                    }else{
+                        positionVehicle=read.nextInt();
+                    }
+                }while((positionVehicle<1 || positionVehicle>numberVehicles) && !stop);
+                if(stop==false){
+                    clean();
+                    System.out.println(business.lookForVehicles(brand).get(positionVehicle-1));
+                    do{
+                        System.out.println("How many percentage do you want to discount?");
+                        percentage=read.nextDouble();
+                    }while(percentage<1 || percentage>100);
+                    percentage/=100;
+                    System.out.println(business.makeDiscount(percentage, business.lookForVehicles(brand).get(positionVehicle-1)));
+                    read.nextLine();
+                }
+                break;
+            case 3:
+                int model;
+                model=checkInt("Enter the model", 1950);
+                do{
+                    clean();
+                    System.out.println("Choose a vehicle");
+                    numberVehicles=printVehicles(business.lookForVehicles(model));
+                    if(numberVehicles==0){
+                        stop=true;
+                    }else{
+                        positionVehicle=read.nextInt();
+                    }
+                }while((positionVehicle<1 || positionVehicle>numberVehicles) && !stop);
+                if(stop==false){
+                    clean();
+                    System.out.println(business.lookForVehicles(model).get(positionVehicle-1));
+                    do{
+                        System.out.println("How many percentage do you want to discount?");
+                        percentage=read.nextDouble();
+                    }while(percentage<1 || percentage>100);
+                    percentage/=100;
+                    System.out.println(business.makeDiscount(percentage, business.lookForVehicles(model).get(positionVehicle-1)));
+                }
+                read.nextLine();
+                break;
+            case 4:
+                double displacement;
+                displacement=checkDouble("Enter the displacement", 1);
+                do{
+                    clean();
+                    System.out.println("Choose a vehicle");
+                    numberVehicles=printVehicles(business.lookForVehicles(displacement));
+                    if(numberVehicles==0){
+                        stop=true;
+                    }else{
+                        positionVehicle=read.nextInt();
+                    }
+                }while((positionVehicle<1 || positionVehicle>numberVehicles) && !stop);
+                if(stop==false){
+                    clean();
+                    System.out.println(business.lookForVehicles(displacement).get(positionVehicle-1));
+                    do{
+                        System.out.println("How many percentage do you want to discount?");
+                        percentage=read.nextDouble();
+                    }while(percentage<1 || percentage>100);
+                    percentage/=100;
+                    System.out.println(business.makeDiscount(percentage, business.lookForVehicles(displacement).get(positionVehicle-1))); 
+                }
+                read.nextLine();
+                break;
+            default:
+                System.out.println("That option doesn't exist");
+                break;
+        }
     }
 
     /**

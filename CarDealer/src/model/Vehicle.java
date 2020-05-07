@@ -64,12 +64,12 @@ public abstract class Vehicle {
         }
         if(soat==null){
             soatStatus="It doesn't have";
-        }else if(soat.getYear()!=2020){
+        }else if(soat.getYear()!=Document.CURRENT_YEAR){
             soatStatus="Expired";
         }
         if(mechanicalTechnicalReview==null){
             MTRStatus="It doesn't have";
-        }else if(mechanicalTechnicalReview.getYear()!=2020){
+        }else if(mechanicalTechnicalReview.getYear()!=Document.CURRENT_YEAR){
             MTRStatus="Expired";
         }
 

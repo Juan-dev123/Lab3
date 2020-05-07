@@ -1,6 +1,10 @@
 package model;
 
+import java.util.Calendar;
+
 public abstract class Document {
+
+    public static final int CURRENT_YEAR=Calendar.getInstance().get(Calendar.YEAR);
 
     //Atributes
     private double price;
