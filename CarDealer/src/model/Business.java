@@ -451,6 +451,204 @@ public class Business {
     }
 
     /**
+     * It gets the new vehicles of a type of vehicle
+     * @param typeVehicle The type of vehicle. Motorcycle=1. Gasoline Car=2. Electric Car=3. Hybrid Car=4. 
+     * @return The new vehicles.
+     */
+    public ArrayList<Vehicle> getNewVehicles(int typeVehicle){
+        ArrayList<Vehicle> newVehicles=new ArrayList<>();
+        switch(typeVehicle){
+            case 1: 
+                for(int i=0; i<vehicles.size(); i++){
+                    if(vehicles.get(i) instanceof Motorcycle){
+                        if(vehicles.get(i).getIsnew()){
+                            newVehicles.add(vehicles.get(i));
+                        }
+                    }
+                }       
+                break;
+            case 2:
+                for(int i=0; i<vehicles.size(); i++){
+                    if(vehicles.get(i) instanceof GasolineCar){
+                        if(vehicles.get(i).getIsnew()){
+                            newVehicles.add(vehicles.get(i));
+                        }
+                    }
+                }
+                break;
+            case 3:
+                for(int i=0; i<vehicles.size(); i++){
+                    if(vehicles.get(i) instanceof ElecticCar){
+                        if(vehicles.get(i).getIsnew()){
+                            newVehicles.add(vehicles.get(i));
+                        }
+                    }
+                }
+                break;
+            case 4:
+                for(int i=0; i<vehicles.size(); i++){
+                    if(vehicles.get(i) instanceof HybridCar){
+                        if(vehicles.get(i).getIsnew()){
+                            newVehicles.add(vehicles.get(i));
+                        }
+                    }
+                }
+                break;
+        }
+        return newVehicles;
+    }
+
+    /**
+     * It gets the used vehicles of a type of vehicle
+     * @param typeVehicle The type of vehicle. Motorcycle=1. Gasoline Car=2. Electric Car=3. Hybrid Car=4. 
+     * @return The used vehicles.
+     */
+    public ArrayList<Vehicle> getUsedVehicles(int typeVehicle){
+        ArrayList<Vehicle> usedVehicles=new ArrayList<>();
+        boolean stop;
+        switch(typeVehicle){
+            case 1: 
+                for(int i=0; i<vehicles.size(); i++){
+                    if(vehicles.get(i) instanceof Motorcycle){
+                        if(vehicles.get(i).getIsnew()==false){
+                            usedVehicles.add(vehicles.get(i));
+                        }
+                    }
+                }       
+                break;
+            case 2:
+                for(int i=0; i<vehicles.size(); i++){
+                    if(vehicles.get(i) instanceof GasolineCar){
+                        if(vehicles.get(i).getIsnew()==false){
+                            usedVehicles.add(vehicles.get(i));
+                        }
+                    }
+                }
+                stop=false;
+                for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+                    if(parkingLot.getVehicles()[i]!=null){
+                        if(parkingLot.getVehicles()[i] instanceof GasolineCar){
+                            usedVehicles.add(parkingLot.getVehicles()[i]);
+                        }
+                    }else{
+                        stop=true;
+                    }
+                }
+                break;
+            case 3:
+                for(int i=0; i<vehicles.size(); i++){
+                    if(vehicles.get(i) instanceof ElecticCar){
+                        if(vehicles.get(i).getIsnew()==false){
+                            usedVehicles.add(vehicles.get(i));
+                        }
+                    }
+                }
+                stop=false;
+                for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+                    if(parkingLot.getVehicles()[i]!=null){
+                        if(parkingLot.getVehicles()[i] instanceof ElecticCar){
+                            usedVehicles.add(parkingLot.getVehicles()[i]);
+                        }
+                    }else{
+                        stop=true;
+                    }
+                }
+                break;
+            case 4:
+                for(int i=0; i<vehicles.size(); i++){
+                    if(vehicles.get(i) instanceof HybridCar){
+                        if(vehicles.get(i).getIsnew()==false){
+                            usedVehicles.add(vehicles.get(i));
+                        }
+                    }
+                }
+                stop=false;
+                for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+                    if(parkingLot.getVehicles()[i]!=null){
+                        if(parkingLot.getVehicles()[i] instanceof HybridCar){
+                            usedVehicles.add(parkingLot.getVehicles()[i]);
+                        }
+                    }else{
+                        stop=true;
+                    }
+                }
+                break;
+        }
+        return usedVehicles;
+    }
+
+    /**
+     * It gets all vehicles of a type of vehicle
+     * @param typeVehicle The type of vehicle. Motorcycle=1. Gasoline Car=2. Electric Car=3. Hybrid Car=4. 
+     * @return The vehicles.
+     */
+    public ArrayList<Vehicle> getAllVehicles(int typeVehicle){
+        ArrayList<Vehicle> allVehicles=new ArrayList<>();
+        boolean stop;
+        switch(typeVehicle){
+            case 1: 
+                for(int i=0; i<vehicles.size(); i++){
+                    if(vehicles.get(i) instanceof Motorcycle){
+                        allVehicles.add(vehicles.get(i)); 
+                    }
+                }       
+                break;
+            case 2:
+                for(int i=0; i<vehicles.size(); i++){
+                    if(vehicles.get(i) instanceof GasolineCar){
+                        allVehicles.add(vehicles.get(i));
+                    }
+                }
+                stop=false;
+                for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+                    if(parkingLot.getVehicles()[i]!=null){
+                        if(parkingLot.getVehicles()[i] instanceof GasolineCar){
+                            allVehicles.add(parkingLot.getVehicles()[i]);
+                        }
+                    }else{
+                        stop=true;
+                    }
+                }
+                break;
+            case 3:
+                for(int i=0; i<vehicles.size(); i++){
+                    if(vehicles.get(i) instanceof ElecticCar){
+                        allVehicles.add(vehicles.get(i));
+                    }
+                }
+                stop=false;
+                for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+                    if(parkingLot.getVehicles()[i]!=null){
+                        if(parkingLot.getVehicles()[i] instanceof ElecticCar){
+                            allVehicles.add(parkingLot.getVehicles()[i]);
+                        }
+                    }else{
+                        stop=true;
+                    }
+                }
+                break;
+            case 4:
+                for(int i=0; i<vehicles.size(); i++){
+                    if(vehicles.get(i) instanceof HybridCar){
+                        allVehicles.add(vehicles.get(i));
+                    }
+                }
+                stop=false;
+                for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+                    if(parkingLot.getVehicles()[i]!=null){
+                        if(parkingLot.getVehicles()[i] instanceof HybridCar){
+                            allVehicles.add(parkingLot.getVehicles()[i]);
+                        }
+                    }else{
+                        stop=true;
+                    }
+                }
+                break;
+        }
+        return allVehicles;
+    }
+
+    /**
      * It searches a vehicle
      * @param licensePlate The license plate
      * @return The vehicle
@@ -778,5 +976,60 @@ public class Business {
      */
     public void setClients(ArrayList<Client> clients) {
         this.clients = clients;
+    }
+
+    //Quiz
+    public String calculatePercentageOfUsedMotorcycles(){
+        String message;
+        int numberMotorcycles=0;
+        int numberUsedMotorcycles=0;
+        double percentageUsedMotorcycles;
+        //Calculates the number of motorcycles 
+        for(int i=0; i<vehicles.size(); i++){
+            if(vehicles.get(i) instanceof Motorcycle){
+                numberMotorcycles++;
+                if(vehicles.get(i).getIsnew()==false){
+                    numberUsedMotorcycles++;
+                }
+            }
+        }
+        //Calculates the percentage
+        percentageUsedMotorcycles=(double)(numberUsedMotorcycles*100)/(double)numberMotorcycles;
+        message="The percentage of used motorcycles is "+percentageUsedMotorcycles+"%";
+        return message;
+    }
+
+    public String getClientsActiveWithoutSeller(){
+        String message;
+        boolean stop=false;
+        boolean clientWithSeller=false;
+        ArrayList<Client> activeClientsWithoutSeller=new ArrayList<>();
+        //Search if each client has a seller
+        for(int i=0; i<clients.size(); i++){
+            if(clients.get(i).getActive()==true){
+                for(int j=0; j<sellers.length && !stop; j++){
+                    if(sellers[i]!=null){
+                        if(sellers[i].findClient(clients.get(i))){
+                            clientWithSeller=true;
+                            stop=true;
+                        }
+                    }else{
+                        stop=true;
+                    }   
+                }
+                if(clientWithSeller==false){
+                    activeClientsWithoutSeller.add(clients.get(i));
+                }
+            } 
+        }
+        message="The clients withour sellers are:\n";
+        for(int i=0; i<activeClientsWithoutSeller.size(); i++){
+            if(activeClientsWithoutSeller.size()==0){
+                message+="Nobody";
+            }else{
+                message+="Id:"+activeClientsWithoutSeller.get(i).getId()+"\n Name:"+activeClientsWithoutSeller.get(i).getName()+"\n";
+            }
+        }
+        return message;
     }
 }

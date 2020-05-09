@@ -10,6 +10,7 @@ public class Client extends Person {
     //Atributes
     private String phoneNumber;
     private String email;
+    private boolean active;
 
     //Methods
     /**
@@ -25,6 +26,7 @@ public class Client extends Person {
         this.phoneNumber=phoneNumber;
         this.email=email;
         interestingVehicles=new ArrayList<Vehicle>();
+        active=true;
     }
 
     /**
@@ -81,6 +83,13 @@ public class Client extends Person {
        return boughtVehicles;
    }
 
+   /**
+    * @return The status of the client
+    */
+   public boolean getActive(){
+       return active;
+   }
+
     //setters
     /**
      * @param phoneNumber The phone number to set
@@ -108,5 +117,12 @@ public class Client extends Person {
     */
    public void setBoughtVehicles(ArrayList<Vehicle> boughtVehicles) {
        this.boughtVehicles = boughtVehicles;
+   }
+
+   /**
+    * @param active The satus of the client to set
+    */
+   public void setActive(boolean active) {
+       this.active = active;
    }
 }

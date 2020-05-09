@@ -38,6 +38,8 @@ public class Main{
             System.out.println("5 Assign vehicles of interest to a client");
             System.out.println("6 Show the vehicles of interest of a client");
             System.out.println("7 Make a discount in the total price of a vehicle");
+
+            System.out.println("9 Show a catalogue");
             option=read.nextInt();
             read.nextLine();
             clean();
@@ -62,6 +64,9 @@ public class Main{
                 break;
             case 7:
                 makeDiscount();
+                break;
+            case 9:
+                showCatalogue();
                 break;
             default:
                 System.out.println("That option doesn't exist");
@@ -433,6 +438,9 @@ public class Main{
         printVehicles(business.searchClient(id).getInterestingVehicles());
     }
 
+    /**
+     * It makes a discount in the total price of a vehicle
+     */
     public void makeDiscount(){
         double percentage;
         int numberVehicles;
@@ -542,6 +550,97 @@ public class Main{
                 System.out.println("That option doesn't exist");
                 break;
         }
+    }
+
+    public void showCatalogue(){
+        int option;
+        int option1;
+        System.out.println("What type of vehicle do you want to show?");
+        do{
+            System.out.println("1 Motorcycle");
+            System.out.println("2 Gasoline Car");
+            System.out.println("3 Electric Car");
+            System.out.println("4 Hybrid Car");
+            option=read.nextInt();
+        }while(option<1 || option>4);
+        System.out.println("What vehicles do you want to see?");
+        do{
+            System.out.println("1 New");
+            System.out.println("2 Used");
+            System.out.println("3 Both");
+            option1=read.nextInt();
+        }while(option1<1 || option1>3);
+        switch(option){
+            case 1:
+                switch(option1){
+                    case 1:
+                        printVehicles(business.getNewVehicles(option));
+                        break;
+                    case 2:
+                        printVehicles(business.getUsedVehicles(option));
+                        break;
+                    case 3:
+                        printVehicles(business.getAllVehicles(option));
+                        break;
+                    default:
+                        System.out.println("That option doesn't exist");
+                        break;
+                }
+                break;
+            case 2:
+                switch(option1){
+                    case 1:
+                        printVehicles(business.getNewVehicles(option));
+                        break;
+                    case 2:
+                        printVehicles(business.getUsedVehicles(option));
+                        break;
+                    case 3:
+                        printVehicles(business.getAllVehicles(option));
+                        break;
+                    default:
+                        System.out.println("That option doesn't exist");
+                        break;
+                }
+                break;
+            case 3:
+                switch(option1){
+                    case 1:
+                        printVehicles(business.getNewVehicles(option));
+                        break;
+                    case 2:
+                        printVehicles(business.getUsedVehicles(option));
+                        break;
+                    case 3:
+                        printVehicles(business.getAllVehicles(option));
+                        break;
+                    default:
+                        System.out.println("That option doesn't exist");
+                        break;
+                }
+                break;
+            case 4:
+                switch(option1){
+                    case 1:
+                        printVehicles(business.getNewVehicles(option));
+                        break;
+                    case 2:
+                        printVehicles(business.getUsedVehicles(option));
+                        break;
+                    case 3:
+                        printVehicles(business.getAllVehicles(option));
+                        break;
+                    default:
+                        System.out.println("That option doesn't exist");
+                        break;
+                }
+                break;
+            default:
+                System.out.println("That option doesn't exist");
+                break;
+
+        }
+        read.nextLine();
     }
 
     /**
