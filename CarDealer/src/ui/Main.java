@@ -31,15 +31,17 @@ public class Main{
         char answer;
         do{
             System.out.println("What do you want to do?");
-            System.out.println("1 Register a vehicle");
-            System.out.println("2 Register a client");
-            System.out.println("3 Register a seller");
-            System.out.println("4 Assign a client to a seller");
-            System.out.println("5 Assign vehicles of interest to a client");
-            System.out.println("6 Show the vehicles of interest of a client");
-            System.out.println("7 Make a discount in the total price of a vehicle");
+            System.out.println("01 Register a vehicle");
+            System.out.println("02 Register a client");
+            System.out.println("03 Register a seller");
+            System.out.println("04 Assign a client to a seller");
+            System.out.println("05 Assign vehicles of interest to a client");
+            System.out.println("06 Show the vehicles of interest of a client");
+            System.out.println("07 Make a discount in the total price of a vehicle");
 
-            System.out.println("9 Show a catalogue");
+            System.out.println("09 Show a catalogue");
+            System.out.println("10 Look for vehicles in the parking lot by model");
+            
             option=read.nextInt();
             read.nextLine();
             clean();
@@ -65,8 +67,14 @@ public class Main{
             case 7:
                 makeDiscount();
                 break;
+
+
+
             case 9:
                 showCatalogue();
+                break;
+            case 10:
+                lookForVehiclesInParkingLot();
                 break;
             default:
                 System.out.println("That option doesn't exist");
@@ -422,8 +430,7 @@ public class Main{
             default:
                 System.out.println("That option doesn't exist");
                 break;
-        }
-          
+        }     
     }
 
     /**
@@ -552,6 +559,9 @@ public class Main{
         }
     }
 
+    /**
+     * It shows a catalogue of vehicles
+     */
     public void showCatalogue(){
         int option;
         int option1;
@@ -644,6 +654,19 @@ public class Main{
     }
 
     /**
+     * It looks for vehicles in the parking lot by model
+     */
+    public void lookForVehiclesInParkingLot(){
+        int model;
+        do{
+            System.out.println("Enter the model");
+            model=read.nextInt();
+        }while(model>2014);
+        printVehicles(business.getVehiclesInParkingLot(model));
+        read.nextLine();
+    }
+
+    /**
      * It checks if a license plate is already existed
      * @param licensePlate The license plate
      * @return True if the license plate is unique. False if it isn't
@@ -654,7 +677,7 @@ public class Main{
         if(business.searchVehicle(licensePlate)!=null){
                 System.out.println("That license plate is already exists. You have two change it or quit");
                 System.out.println("What do you want to do?");
-               do{
+                do{
                     System.out.println("1 Change it");
                     System.out.println("2 Quit");
                     option=read.nextInt();

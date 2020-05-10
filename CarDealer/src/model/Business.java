@@ -647,6 +647,25 @@ public class Business {
         }
         return allVehicles;
     }
+    /**
+     * It looks for vehicles in the parking lot by model
+     * @param model The model. model < 2015
+     * @return The vehicles
+     */
+    public ArrayList<Vehicle> getVehiclesInParkingLot(int model){
+        ArrayList<Vehicle> vehiclesParkingLot=new ArrayList<>();
+        boolean stop=false;
+        for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+            if(parkingLot.getVehicles()[i]!=null){
+                if(parkingLot.getVehicles()[i].getModel()==model){
+                    vehiclesParkingLot.add(parkingLot.getVehicles()[i]);
+                }
+            }else{
+                stop=true;
+            }
+        }
+        return vehiclesParkingLot;
+    }
 
     /**
      * It searches a vehicle

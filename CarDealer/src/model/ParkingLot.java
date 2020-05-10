@@ -61,12 +61,12 @@ public class ParkingLot {
         return parkingLot;
     }
 
-   /**
+    /**
     * @return The vehicles
     */
-   public Vehicle[] getVehicles() {
-       return vehicles;
-   }
+    public Vehicle[] getVehicles() {
+        return vehicles;
+    }
 
     //setters
     /**
