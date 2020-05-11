@@ -39,7 +39,7 @@ public class ParkingLot {
     }
     /**
      * It searches an empty position in the array vehicles
-     * @return The position empty
+     * @return The position empty. If all position are filled return -1
      */
     public int getPositionEmpty(){
         int position=-1;

@@ -41,7 +41,7 @@ public class Main{
 
             System.out.println("09 Show a catalogue");
             System.out.println("10 Look for vehicles in the parking lot by model");
-            
+            System.out.println("11 Consult if the parking lot is filled");
             option=read.nextInt();
             read.nextLine();
             clean();
@@ -75,6 +75,9 @@ public class Main{
                 break;
             case 10:
                 lookForVehiclesInParkingLot();
+                break;
+            case 11:
+                consultSpaceInParkingLot();
                 break;
             default:
                 System.out.println("That option doesn't exist");
@@ -664,6 +667,28 @@ public class Main{
         }while(model>2014);
         printVehicles(business.getVehiclesInParkingLot(model));
         read.nextLine();
+    }
+
+    /**
+     * It consults if the parking lot is filled
+     */
+    public void consultSpaceInParkingLot(){
+        if(business.getParkingLot().getPositionEmpty()==-1){
+            System.out.println("There is not space in the parking lot, it should be expanded");
+        }else{
+            int totalSpace=50-business.getParkingLot().getPositionEmpty();
+            int spaceColumn1=10-business.lookForSpaceinParkingLot(0);
+            int spaceColumn2=10-business.lookForSpaceinParkingLot(1);
+            int spaceColumn3=10-business.lookForSpaceinParkingLot(2);
+            int spaceColumn4=10-business.lookForSpaceinParkingLot(3);
+            int spaceColumn5=10-business.lookForSpaceinParkingLot(4);
+            System.out.println("In total there are "+totalSpace+" free places");
+            System.out.println("There are "+spaceColumn1+" free places in the column 1");
+            System.out.println("There are "+spaceColumn2+" free places in the column 2");
+            System.out.println("There are "+spaceColumn3+" free places in the column 3");
+            System.out.println("There are "+spaceColumn4+" free places in the column 4");
+            System.out.println("There are "+spaceColumn5+" free places in the column 5");
+        }
     }
 
     /**
