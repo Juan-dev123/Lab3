@@ -26,7 +26,8 @@ public class Client extends Person {
         this.phoneNumber=phoneNumber;
         this.email=email;
         interestingVehicles=new ArrayList<Vehicle>();
-        active=true;
+        boughtVehicles=new ArrayList<Vehicle>();
+        active=false;
     }
 
     /**

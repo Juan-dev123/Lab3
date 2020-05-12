@@ -53,6 +53,19 @@ public class ParkingLot {
         return position;
     }
 
+    /**
+     * It removes a vehicle in the parking lot if there is in the parking lot
+     * @param vehicle The vehicle
+     */
+    public void removeVehicle(Vehicle vehicle){
+        for(int i=0; i<vehicles.length; i++){
+            if(vehicles[i]!=null){
+                if(vehicles[i]==vehicle){
+                    vehicles[i]=null;
+                }
+            }
+        }
+    }
     //getters
     /**
      * @return The parking lot

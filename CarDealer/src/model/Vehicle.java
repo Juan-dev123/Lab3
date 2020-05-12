@@ -5,6 +5,7 @@ public abstract class Vehicle {
     //Relations
     private Document mechanicalTechnicalReview;
     private Document soat;
+    private Client owner;
 
     //Attributes
     private double totalPrice;
@@ -15,7 +16,7 @@ public abstract class Vehicle {
     private double mileage;
     private boolean isNew;
     private String licensePlate;
-    private boolean available;
+    private boolean sold;
 
     //Methods
     /**
@@ -40,7 +41,8 @@ public abstract class Vehicle {
         this.licensePlate=licensePlate;
         this.soat=soat;
         this.mechanicalTechnicalReview=mechanicalTechnicalReview;
-        available=true;
+        sold=false;
+        owner=null;
     }
     
     @Override
@@ -157,8 +159,15 @@ public abstract class Vehicle {
     /**
      * @return The status of the vehicle
      */
-    public boolean getAvailable(){
-        return available;
+    public boolean getSold(){
+        return sold;
+    }
+
+    /**
+     * @return The owner
+     */
+    public Client getOwner() {
+        return owner;
     }
 
     //setters
@@ -232,9 +241,16 @@ public abstract class Vehicle {
     }
 
     /**
-     * @param available The available to set
+     * @param sold The available to set
      */
-    public void setAvailable(boolean available) {
-        this.available = available;
+    public void setSold(boolean sold) {
+        this.sold = sold;
+    }
+
+    /**
+     * @param owner The owner to set
+     */
+    public void setOwner(Client owner) {
+        this.owner = owner;
     }
 }

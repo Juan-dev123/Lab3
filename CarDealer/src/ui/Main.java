@@ -38,7 +38,7 @@ public class Main{
             System.out.println("05 Assign vehicles of interest to a client");
             System.out.println("06 Show the vehicles of interest of a client");
             System.out.println("07 Make a discount in the total price of a vehicle");
-
+            System.out.println("08 Sell a vehicle");
             System.out.println("09 Show a catalogue");
             System.out.println("10 Look for vehicles in the parking lot by model");
             System.out.println("11 Consult if the parking lot is filled");
@@ -67,9 +67,9 @@ public class Main{
             case 7:
                 makeDiscount();
                 break;
-
-
-
+            case 8:
+                sellVehicle();
+                break;
             case 9:
                 showCatalogue();
                 break;
@@ -688,6 +688,127 @@ public class Main{
             System.out.println("There are "+spaceColumn3+" free places in the column 3");
             System.out.println("There are "+spaceColumn4+" free places in the column 4");
             System.out.println("There are "+spaceColumn5+" free places in the column 5");
+        }
+    }
+
+    /**
+     * It sells a vehicle 
+     */
+    public void sellVehicle(){
+        boolean stop=false;
+        int numberVehicles;
+        int id;
+        int positionVehicle=0;
+        char answer;
+        System.out.println("Who wants to buy the vehicle?");
+        do{
+            id=checkInt("Please enter the id of the client", 1);
+            read.nextLine();
+        }while(business.searchClient(id)==null);
+        System.out.println("With what do you want to search for the vehicle?");
+        System.out.println("1 License plate");
+        System.out.println("2 Brand");
+        System.out.println("3 Model");
+        System.out.println("4 Displacement");
+        int option=read.nextInt();
+        read.nextLine();
+        switch(option){
+            case 1:
+                String licensePlate;
+                System.out.println("Enter the license plate");
+                licensePlate=read.nextLine().toUpperCase();
+                if(business.searchVehicle(licensePlate)==null){
+                    System.out.println("It is not exist a vehicle with the license plate "+licensePlate);
+                }else{
+                    System.out.println(business.searchVehicle(licensePlate));
+                    do{
+                        System.out.println("Are you sure that you want to buy this vehicle? Y/N");
+                        answer=read.nextLine().toUpperCase().charAt(0);
+                    }while(answer!='Y' && answer!='N');
+                    if(answer=='Y'){
+                        System.out.println(business.sellVehicle(business.searchVehicle(licensePlate), business.searchClient(id)));
+                    }
+                    
+                }    
+                break;
+            case 2:
+                String brand;
+                System.out.println("Enter the brand");
+                brand=read.nextLine().toUpperCase();
+                do{
+                    clean();
+                    System.out.println("Choose a vehicle");
+                    numberVehicles=printVehicles(business.lookForVehicles(brand));
+                    if(numberVehicles==0){
+                        stop=true;
+                    }else{
+                        positionVehicle=read.nextInt();
+                    }
+                }while((positionVehicle<1 || positionVehicle>numberVehicles) && !stop);
+                if(stop==false){
+                    read.nextLine();
+                    do{
+                        System.out.println("Are you sure that you want to buy this vehicle? Y/N");
+                        answer=read.nextLine().toUpperCase().charAt(0);
+                    }while(answer!='Y' && answer!='N');
+                    if(answer=='Y'){
+                        System.out.println(business.sellVehicle(business.lookForVehicles(brand).get(positionVehicle-1), business.searchClient(id)));
+                    }
+                }
+                break;
+            case 3:
+                int model;
+                model=checkInt("Enter the model", 1950);
+                read.nextLine();
+                do{
+                    clean();
+                    System.out.println("Choose a vehicle");
+                    numberVehicles=printVehicles(business.lookForVehicles(model));
+                    if(numberVehicles==0){
+                        stop=true;
+                    }else{
+                        positionVehicle=read.nextInt();
+                    }
+                }while((positionVehicle<1 || positionVehicle>numberVehicles) && !stop);
+                if(stop==false){
+                    read.nextLine();
+                    do{
+                        System.out.println("Are you sure that you want to buy this vehicle? Y/N");
+                        answer=read.nextLine().toUpperCase().charAt(0);
+                    }while(answer!='Y' && answer!='N');
+                    if(answer=='Y'){
+                        System.out.println(business.sellVehicle(business.lookForVehicles(model).get(positionVehicle-1), business.searchClient(id)));
+                    }
+                }
+                break;
+            case 4:
+                double displacement;
+                displacement=checkDouble("Enter the displacement", 1);
+                read.nextLine();
+                do{
+                    System.out.println("Choose a vehicle");
+                    numberVehicles=printVehicles(business.lookForVehicles(displacement));
+                    if(numberVehicles==0){
+                        stop=true;
+                    }else{
+                        positionVehicle=read.nextInt();
+                    }
+                }while((positionVehicle<1 || positionVehicle>numberVehicles) && !stop);
+                if(stop==false){
+                    read.nextLine();
+                    do{
+                        System.out.println("Are you sure that you want to buy this vehicle? Y/N");
+                        answer=read.nextLine().toUpperCase().charAt(0);
+                    }while(answer!='Y' && answer!='N');
+                    if(answer=='Y'){
+                        System.out.println(business.sellVehicle(business.lookForVehicles(displacement).get(positionVehicle-1), business.searchClient(id)));
+                    }
+                }
+                
+                break;
+            default:
+                System.out.println("That option doesn't exist");
+                break;
         }
     }
 

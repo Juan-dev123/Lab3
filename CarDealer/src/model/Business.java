@@ -363,21 +363,14 @@ public class Business {
     public String assignClient(int positionSeller, int positionClient){
         String message="";
         boolean stop=false;
+        Seller sellerInCharge=findSellerInCharge(clients.get(positionClient));
         boolean clientBussy=false; //If the client is assigned to a seller
         int quantityClient=0; //Quantity of the clients cared for the seller
         //Checks if the clients belong to another seller
-        for(int i=0; i<sellers.length && !stop; i++){
-            if(sellers[i]!=null){
-                clientBussy=sellers[i].findClient(clients.get(positionClient));
-                if(clientBussy){
-                    stop=true;
-                    message="This client already belongs to a seller";
-                }
-            }else{
-                stop=true;
-            }
+        if(sellerInCharge!=null){
+            clientBussy=true;
+            message="This client already belongs to a seller";
         }
-        stop=false;
         for(int i=0; i<sellers[positionSeller].getClients().length && !stop; i++){
             if(sellers[positionSeller].getClients()[i]!=null){    
                 quantityClient++; 
@@ -390,6 +383,7 @@ public class Business {
         }
         if(!clientBussy && quantityClient<Seller.CLIENTS_IN_CARE){
             sellers[positionSeller].assignClient(clients.get(positionClient), quantityClient);
+            clients.get(positionClient).setActive(true);
             message="The client was assigned to the seller successfully";
         }
         return message;
@@ -460,7 +454,7 @@ public class Business {
         switch(typeVehicle){
             case 1: 
                 for(int i=0; i<vehicles.size(); i++){
-                    if(vehicles.get(i) instanceof Motorcycle){
+                    if(vehicles.get(i) instanceof Motorcycle && !vehicles.get(i).getSold()){
                         if(vehicles.get(i).getIsnew()){
                             newVehicles.add(vehicles.get(i));
                         }
@@ -469,7 +463,7 @@ public class Business {
                 break;
             case 2:
                 for(int i=0; i<vehicles.size(); i++){
-                    if(vehicles.get(i) instanceof GasolineCar){
+                    if(vehicles.get(i) instanceof GasolineCar && !vehicles.get(i).getSold()){
                         if(vehicles.get(i).getIsnew()){
                             newVehicles.add(vehicles.get(i));
                         }
@@ -478,7 +472,7 @@ public class Business {
                 break;
             case 3:
                 for(int i=0; i<vehicles.size(); i++){
-                    if(vehicles.get(i) instanceof ElecticCar){
+                    if(vehicles.get(i) instanceof ElecticCar && !vehicles.get(i).getSold()){
                         if(vehicles.get(i).getIsnew()){
                             newVehicles.add(vehicles.get(i));
                         }
@@ -487,7 +481,7 @@ public class Business {
                 break;
             case 4:
                 for(int i=0; i<vehicles.size(); i++){
-                    if(vehicles.get(i) instanceof HybridCar){
+                    if(vehicles.get(i) instanceof HybridCar && !vehicles.get(i).getSold()){
                         if(vehicles.get(i).getIsnew()){
                             newVehicles.add(vehicles.get(i));
                         }
@@ -509,7 +503,7 @@ public class Business {
         switch(typeVehicle){
             case 1: 
                 for(int i=0; i<vehicles.size(); i++){
-                    if(vehicles.get(i) instanceof Motorcycle){
+                    if(vehicles.get(i) instanceof Motorcycle && !vehicles.get(i).getSold()){
                         if(vehicles.get(i).getIsnew()==false){
                             usedVehicles.add(vehicles.get(i));
                         }
@@ -518,7 +512,7 @@ public class Business {
                 break;
             case 2:
                 for(int i=0; i<vehicles.size(); i++){
-                    if(vehicles.get(i) instanceof GasolineCar){
+                    if(vehicles.get(i) instanceof GasolineCar && !vehicles.get(i).getSold()){
                         if(vehicles.get(i).getIsnew()==false){
                             usedVehicles.add(vehicles.get(i));
                         }
@@ -527,17 +521,15 @@ public class Business {
                 stop=false;
                 for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
                     if(parkingLot.getVehicles()[i]!=null){
-                        if(parkingLot.getVehicles()[i] instanceof GasolineCar){
+                        if(parkingLot.getVehicles()[i] instanceof GasolineCar && !vehicles.get(i).getSold()){
                             usedVehicles.add(parkingLot.getVehicles()[i]);
                         }
-                    }else{
-                        stop=true;
                     }
                 }
                 break;
             case 3:
                 for(int i=0; i<vehicles.size(); i++){
-                    if(vehicles.get(i) instanceof ElecticCar){
+                    if(vehicles.get(i) instanceof ElecticCar && !vehicles.get(i).getSold()){
                         if(vehicles.get(i).getIsnew()==false){
                             usedVehicles.add(vehicles.get(i));
                         }
@@ -546,17 +538,15 @@ public class Business {
                 stop=false;
                 for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
                     if(parkingLot.getVehicles()[i]!=null){
-                        if(parkingLot.getVehicles()[i] instanceof ElecticCar){
+                        if(parkingLot.getVehicles()[i] instanceof ElecticCar && !vehicles.get(i).getSold()){
                             usedVehicles.add(parkingLot.getVehicles()[i]);
                         }
-                    }else{
-                        stop=true;
                     }
                 }
                 break;
             case 4:
                 for(int i=0; i<vehicles.size(); i++){
-                    if(vehicles.get(i) instanceof HybridCar){
+                    if(vehicles.get(i) instanceof HybridCar && !vehicles.get(i).getSold()){
                         if(vehicles.get(i).getIsnew()==false){
                             usedVehicles.add(vehicles.get(i));
                         }
@@ -565,11 +555,9 @@ public class Business {
                 stop=false;
                 for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
                     if(parkingLot.getVehicles()[i]!=null){
-                        if(parkingLot.getVehicles()[i] instanceof HybridCar){
+                        if(parkingLot.getVehicles()[i] instanceof HybridCar && !vehicles.get(i).getSold()){
                             usedVehicles.add(parkingLot.getVehicles()[i]);
                         }
-                    }else{
-                        stop=true;
                     }
                 }
                 break;
@@ -584,63 +572,53 @@ public class Business {
      */
     public ArrayList<Vehicle> getAllVehicles(int typeVehicle){
         ArrayList<Vehicle> allVehicles=new ArrayList<>();
-        boolean stop;
         switch(typeVehicle){
             case 1: 
                 for(int i=0; i<vehicles.size(); i++){
-                    if(vehicles.get(i) instanceof Motorcycle){
+                    if(vehicles.get(i) instanceof Motorcycle && !vehicles.get(i).getSold()){
                         allVehicles.add(vehicles.get(i)); 
                     }
                 }       
                 break;
             case 2:
                 for(int i=0; i<vehicles.size(); i++){
-                    if(vehicles.get(i) instanceof GasolineCar){
+                    if(vehicles.get(i) instanceof GasolineCar && !vehicles.get(i).getSold()){
                         allVehicles.add(vehicles.get(i));
                     }
                 }
-                stop=false;
-                for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+                for(int i=0; i<parkingLot.getVehicles().length; i++){
                     if(parkingLot.getVehicles()[i]!=null){
-                        if(parkingLot.getVehicles()[i] instanceof GasolineCar){
+                        if(parkingLot.getVehicles()[i] instanceof GasolineCar && !vehicles.get(i).getSold()){
                             allVehicles.add(parkingLot.getVehicles()[i]);
                         }
-                    }else{
-                        stop=true;
                     }
                 }
                 break;
             case 3:
                 for(int i=0; i<vehicles.size(); i++){
-                    if(vehicles.get(i) instanceof ElecticCar){
+                    if(vehicles.get(i) instanceof ElecticCar && !vehicles.get(i).getSold()){
                         allVehicles.add(vehicles.get(i));
                     }
                 }
-                stop=false;
-                for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+                for(int i=0; i<parkingLot.getVehicles().length; i++){
                     if(parkingLot.getVehicles()[i]!=null){
-                        if(parkingLot.getVehicles()[i] instanceof ElecticCar){
+                        if(parkingLot.getVehicles()[i] instanceof ElecticCar && !vehicles.get(i).getSold()){
                             allVehicles.add(parkingLot.getVehicles()[i]);
                         }
-                    }else{
-                        stop=true;
                     }
                 }
                 break;
             case 4:
                 for(int i=0; i<vehicles.size(); i++){
-                    if(vehicles.get(i) instanceof HybridCar){
+                    if(vehicles.get(i) instanceof HybridCar && !vehicles.get(i).getSold()){
                         allVehicles.add(vehicles.get(i));
                     }
                 }
-                stop=false;
-                for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+                for(int i=0; i<parkingLot.getVehicles().length; i++){
                     if(parkingLot.getVehicles()[i]!=null){
-                        if(parkingLot.getVehicles()[i] instanceof HybridCar){
+                        if(parkingLot.getVehicles()[i] instanceof HybridCar && !vehicles.get(i).getSold()){
                             allVehicles.add(parkingLot.getVehicles()[i]);
                         }
-                    }else{
-                        stop=true;
                     }
                 }
                 break;
@@ -654,17 +632,65 @@ public class Business {
      */
     public ArrayList<Vehicle> getVehiclesInParkingLot(int model){
         ArrayList<Vehicle> vehiclesParkingLot=new ArrayList<>();
-        boolean stop=false;
-        for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+        for(int i=0; i<parkingLot.getVehicles().length; i++){
             if(parkingLot.getVehicles()[i]!=null){
                 if(parkingLot.getVehicles()[i].getModel()==model){
                     vehiclesParkingLot.add(parkingLot.getVehicles()[i]);
                 }
-            }else{
-                stop=true;
             }
         }
         return vehiclesParkingLot;
+    }
+
+    public String sellVehicle(Vehicle vehicle, Client client){
+        Seller seller=findSellerInCharge(client);
+        String message;
+        if(seller!=null){
+            int totalSalesSeller=seller.getTotalSales();
+            //Create soat
+            Soat soat=new Soat(250000, Document.CURRENT_YEAR, 800000);
+            //Create technical mechanical review
+            MechanicalTechnicalReview mtr=new MechanicalTechnicalReview(250000, Document.CURRENT_YEAR, 18);
+            //Create license plate
+            String licensePlate="";
+            for(int i=0; i<6; i++){
+                if(i<3){
+                    licensePlate+=(char)(int)(Math.random()*14+65);
+                }else{
+                    licensePlate+=(int)(Math.random()*8+1);
+                }
+            }
+            //Update status in business and seller
+            totalSales++;
+            totalProfits+=vehicle.getTotalPrice();
+            totalSalesSeller++;
+            seller.setTotalSales(totalSalesSeller);
+            setFreeClient(seller, client);
+            //Update status of vehicle and client
+            if(vehicle.getIsnew()){
+                vehicle.setSoat(soat);
+                vehicle.setMechanicalTechnicalReview(mtr);
+                vehicle.setLicensePlate(licensePlate);
+            }else{ 
+                if(vehicle.getSoat()==null || vehicle.getSoat().getYear()!=Document.CURRENT_YEAR){
+                    vehicle.setSoat(soat);
+                }
+                if(vehicle.getMechanicalTechnicalReview()==null || vehicle.getMechanicalTechnicalReview().getYear()!=Document.CURRENT_YEAR){
+                    vehicle.setMechanicalTechnicalReview(mtr);
+                }
+            }
+            vehicle.setOwner(client);
+            vehicle.setSold(true);
+            client.setActive(false);
+            client.getBoughtVehicles().add(vehicle);
+            //If the vehicle is in the parking lot, then the vehicle is removed
+            parkingLot.removeVehicle(vehicle);
+            message="The vehicle was sold";
+        }else{
+            message="First you have to assign this client to a seller";
+        }
+        
+        return message;
     }
 
     /**
@@ -674,23 +700,19 @@ public class Business {
      */
     public Vehicle searchVehicle(String licensePlate){
         boolean exist=false;
-        boolean stop=false;
         Vehicle vehicle=null;
         //Search in the parking lot
-        for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+        for(int i=0; i<parkingLot.getVehicles().length; i++){
             if(parkingLot.getVehicles()[i]!=null){
-                if(parkingLot.getVehicles()[i].getLicensePlate().equals(licensePlate)){
+                if(parkingLot.getVehicles()[i].getLicensePlate().equals(licensePlate) && !parkingLot.getVehicles()[i].getSold() && !parkingLot.getVehicles()[i].getIsnew()){
                     exist=true;
-                    stop=true;
                     vehicle=parkingLot.getVehicles()[i];
                 }
-            }else{
-                stop=true;
-            } 
+            }
         }
         if(!exist){
             for(int i=0; i<vehicles.size() && !exist;i++){
-                if(vehicles.get(i).getLicensePlate().equals(licensePlate)){
+                if(vehicles.get(i).getLicensePlate().equals(licensePlate) && !vehicles.get(i).getIsnew() && !vehicles.get(i).getSold()){
                     vehicle=vehicles.get(i);
                     exist=true;
                 }
@@ -791,6 +813,46 @@ public class Business {
     }
 
     /**
+     * It finds the seller in charge of a client
+     * @param client The client
+     * @return The seller
+     */
+    public Seller findSellerInCharge(Client client){
+        Seller seller=null;
+        boolean stop=false;
+        for(int i=0; i<sellers.length && !stop; i++){
+            if(sellers[i]!=null){
+                if(sellers[i].findClient(client)){
+                    seller=sellers[i];
+                    stop=true;
+                } 
+            }else{
+                stop=true;
+            }
+        }
+        return seller;
+    }
+
+    /**
+     * It sets free the client of the seller
+     * @param sellerInCharge The seller in charge
+     * @param client The client
+     */
+    public void setFreeClient(Seller sellerInCharge, Client client){
+        boolean stop=false;
+        for(int i=0; i<sellerInCharge.getClients().length && !stop; i++){
+            if(sellerInCharge.getClients()[i]!=null){
+                if(sellerInCharge.getClients()[i]==client){
+                    sellerInCharge.getClients()[i]=null;
+                    stop=true;
+                }
+            }else{
+                stop=true;
+            }
+        }
+    }
+
+    /**
      * Look for vehicles with the brand
      * @param brand The brand
      * @return All the vehicles with that brand
@@ -798,19 +860,16 @@ public class Business {
     public ArrayList<Vehicle> lookForVehicles(String brand){
         ArrayList<Vehicle> foundVehicles=new ArrayList<Vehicle>(); 
         for(int i=0; i<vehicles.size(); i++){
-            if(vehicles.get(i).getBrand().equals(brand) && vehicles.get(i).getAvailable()){
+            if(vehicles.get(i).getBrand().equals(brand) && !vehicles.get(i).getSold()){
                 foundVehicles.add(vehicles.get(i));
             }
         }
-        boolean stop=false;
         //Search in the parking lot
-        for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+        for(int i=0; i<parkingLot.getVehicles().length; i++){
             if(parkingLot.getVehicles()[i]!=null){
-                if(parkingLot.getVehicles()[i].getBrand().equals(brand) && parkingLot.getVehicles()[i].getAvailable()){
+                if(parkingLot.getVehicles()[i].getBrand().equals(brand) && !parkingLot.getVehicles()[i].getSold()){
                     foundVehicles.add(parkingLot.getVehicles()[i]);
                 }
-            }else{
-                stop=true;
             }
         }
         return foundVehicles;
@@ -824,19 +883,16 @@ public class Business {
     public ArrayList<Vehicle> lookForVehicles(int model){
         ArrayList<Vehicle> foundVehicles=new ArrayList<Vehicle>(); 
         for(int i=0; i<vehicles.size(); i++){
-            if(vehicles.get(i).getModel()==model && vehicles.get(i).getAvailable()){
+            if(vehicles.get(i).getModel()==model && !vehicles.get(i).getSold()){
                 foundVehicles.add(vehicles.get(i));
             }
         }
-        boolean stop=false;
         //Search in the parking lot
-        for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+        for(int i=0; i<parkingLot.getVehicles().length; i++){
             if(parkingLot.getVehicles()[i]!=null){
-                if(parkingLot.getVehicles()[i].getModel()==model && parkingLot.getVehicles()[i].getAvailable()){
+                if(parkingLot.getVehicles()[i].getModel()==model && !parkingLot.getVehicles()[i].getSold()){
                     foundVehicles.add(parkingLot.getVehicles()[i]);
                 }
-            }else{
-                stop=true;
             }
         }
         return foundVehicles;
@@ -850,19 +906,16 @@ public class Business {
     public ArrayList<Vehicle> lookForVehicles(double displacement){
         ArrayList<Vehicle> foundVehicles=new ArrayList<Vehicle>(); 
         for(int i=0; i<vehicles.size(); i++){
-            if(vehicles.get(i).getDisplacement()==displacement && vehicles.get(i).getAvailable()){
+            if(vehicles.get(i).getDisplacement()==displacement && !vehicles.get(i).getSold()){
                 foundVehicles.add(vehicles.get(i));
             }
         }
-        boolean stop=false;
         //Search in the parking lot
-        for(int i=0; i<parkingLot.getVehicles().length && !stop; i++){
+        for(int i=0; i<parkingLot.getVehicles().length; i++){
             if(parkingLot.getVehicles()[i]!=null){
-                if(parkingLot.getVehicles()[i].getDisplacement()==displacement && parkingLot.getVehicles()[i].getAvailable()){
+                if(parkingLot.getVehicles()[i].getDisplacement()==displacement && !parkingLot.getVehicles()[i].getSold()){
                     foundVehicles.add(parkingLot.getVehicles()[i]);
                 }
-            }else{
-                stop=true;
             }
         }
         return foundVehicles;
