@@ -45,7 +45,7 @@ public class HybridCar extends Car implements GasolineConsumable, BatteryConsuma
         this.batteryConsume=calculateBatteryConsume();
         setTotalPrice(calculateTotalCost());
     }
-
+    
     /**
      * It calculates the gasoline consume
      * @return The gasoline consume
@@ -55,12 +55,12 @@ public class HybridCar extends Car implements GasolineConsumable, BatteryConsuma
         double gasolineConsume=tankCapacity*(getDisplacement()/110);
         return gasolineConsume;
     }
-
+    
     /**
      * It calculates the battery consume
      * @return The battery consume
      */
-    @Override
+    @Override   
     public double calculateBatteryConsume() {
         double batteryConsume=0;
         if(typeCharger==FAST){
@@ -71,10 +71,10 @@ public class HybridCar extends Car implements GasolineConsumable, BatteryConsuma
         return batteryConsume;
     }
 
-    @Override
     /**
      * @return Information about the hybrid car
      */
+    @Override
     public String toString() {
         String message="Hybrid Car\n"+super.toString();
         String typeOfFuelWord="";
@@ -101,12 +101,12 @@ public class HybridCar extends Car implements GasolineConsumable, BatteryConsuma
         message+="    Tank capacity:"+tankCapacity+"\n"+"    Type of fuel:"+typeOfFuelWord+"\n"+"    Gasoline consume:"+gasolineConsume+"\n"+"    Type of charge:"+typeOfCharge+"\n"+"    Battery duration:"+batteryDuration+"\n"+"    Battery consume:"+batteryConsume+"\n";
         return message;
     }
-
-    @Override
+    
     /**
      * It calculates the total cost of a hybrid car
      * @return The total cost
      */
+    @Override
     public double calculateTotalCost() {
         double totalCost=getPrice();
         totalCost+=totalCost*0.15;

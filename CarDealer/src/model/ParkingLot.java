@@ -14,6 +14,7 @@ public class ParkingLot {
     public ParkingLot(){
         parkingLot= new Vehicle[10][5];
         vehicles= new Vehicle[50];
+        //Vehicles created by default
         Vehicle vehicle1=new GasolineCar(50000, "KIA", 2014, 100, 12, false, "KLP123", new Soat(130000, 2014, 700000), new MechanicalTechnicalReview(80000, 2014, 12), 1, 4, true, 12, 1);
         Vehicle vehicle2=new GasolineCar(60000, "TOYOTA", 2013, 100, 12, false, "KLP456", new Soat(130000, 2013, 700000), new MechanicalTechnicalReview(80000, 2013, 12), 1, 4, true, 12, 1);
         Vehicle vehicle3=new GasolineCar(55000, "MERCEDES", 2012, 100, 12, false, "KLP789", new Soat(130000, 2012, 700000), new MechanicalTechnicalReview(80000, 2012, 12), 1, 4, true, 12, 1);

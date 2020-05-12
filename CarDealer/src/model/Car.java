@@ -33,11 +33,11 @@ public abstract class Car extends Vehicle {
         this.numberOfDoors=numberOfDoors;
         this.tintedWindows=tintedWindows;
     }
-
-    @Override
+    
     /**
      * @return Information about the car
      */
+    @Override
     public String toString() {
         String typeOfCarWord="";
         String tinted;

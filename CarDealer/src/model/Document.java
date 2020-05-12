@@ -13,6 +13,11 @@ public abstract class Document {
     private String code;
 
     //Methods
+    /**
+     * It creates a new object type Document
+     * @param price The price
+     * @param year The year
+     */
     public Document(double price, int year){
         this.price=price;
         this.year=year;

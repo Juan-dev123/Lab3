@@ -37,12 +37,11 @@ public class ElecticCar extends Car implements BatteryConsumable{
         setTotalPrice(calculateTotalCost());
     }
     
-    
-    @Override
     /**
      * It calculates the battery consume
      * @return The battery consume
      */
+    @Override
     public double calculateBatteryConsume() {
         double batteryConsume=0;
         if(this.typeCharger==NORMAL){
@@ -52,11 +51,11 @@ public class ElecticCar extends Car implements BatteryConsumable{
         }
         return batteryConsume;
     }
-
-    @Override
+    
     /**
      * @return Information about the electric car
      */
+    @Override
     public String toString() {
         String message="Electric Car\n"+super.toString();
         String typeOfCharge="";
@@ -72,11 +71,11 @@ public class ElecticCar extends Car implements BatteryConsumable{
         return message;
     }
 
-    @Override
     /**
      * It calculates the total cost of an electric car
      * @return The total cost
      */
+    @Override
     public double calculateTotalCost() {
         double totalCost=getPrice();
         totalCost+=totalCost*0.2;

@@ -882,6 +882,11 @@ public class Main{
         return numberClients;
     }
 
+    /**
+     * It prints an arraylist type vehicle
+     * @param vehicles The arraylist type vehicles
+     * @return The quantity of vehicles printed
+     */
     public int printVehicles(ArrayList vehicles){
         int numberVehicles=vehicles.size();
         if(vehicles.size()==0){

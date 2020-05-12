@@ -20,8 +20,6 @@ public class Business {
      * It creates a new object type Business and also creates 7 sellers
      * @param name The name 
      * @param nit The NIT
-     * @param totalProfits The total profits
-     * @param totalSales The total sales
      */
     public Business(String name, String nit){
         this.name=name;
@@ -429,6 +427,12 @@ public class Business {
         return message;
     }
 
+    /**
+     * It makes a discount in the total price of a vehicle
+     * @param percentage The percentage of the discount
+     * @param vehicle The vehicle
+     * @return The updated information of the vehicle
+     */
     public String makeDiscount(double percentage, Vehicle vehicle){
         String message="The new data of the vehicle is:\n";
         double totalPrice=vehicle.getTotalPrice();
@@ -642,6 +646,12 @@ public class Business {
         return vehiclesParkingLot;
     }
 
+    /**
+     * It sells a vehicle
+     * @param vehicle The vehicle
+     * @param client The client who buy the vehicle
+     * @return A message informing the status of the sold
+     */
     public String sellVehicle(Vehicle vehicle, Client client){
         Seller seller=findSellerInCharge(client);
         String message;
@@ -1048,60 +1058,5 @@ public class Business {
      */
     public void setClients(ArrayList<Client> clients) {
         this.clients = clients;
-    }
-
-    //Quiz
-    public String calculatePercentageOfUsedMotorcycles(){
-        String message;
-        int numberMotorcycles=0;
-        int numberUsedMotorcycles=0;
-        double percentageUsedMotorcycles;
-        //Calculates the number of motorcycles 
-        for(int i=0; i<vehicles.size(); i++){
-            if(vehicles.get(i) instanceof Motorcycle){
-                numberMotorcycles++;
-                if(vehicles.get(i).getIsnew()==false){
-                    numberUsedMotorcycles++;
-                }
-            }
-        }
-        //Calculates the percentage
-        percentageUsedMotorcycles=(double)(numberUsedMotorcycles*100)/(double)numberMotorcycles;
-        message="The percentage of used motorcycles is "+percentageUsedMotorcycles+"%";
-        return message;
-    }
-
-    public String getClientsActiveWithoutSeller(){
-        String message;
-        boolean stop=false;
-        boolean clientWithSeller=false;
-        ArrayList<Client> activeClientsWithoutSeller=new ArrayList<>();
-        //Search if each client has a seller
-        for(int i=0; i<clients.size(); i++){
-            if(clients.get(i).getActive()==true){
-                for(int j=0; j<sellers.length && !stop; j++){
-                    if(sellers[i]!=null){
-                        if(sellers[i].findClient(clients.get(i))){
-                            clientWithSeller=true;
-                            stop=true;
-                        }
-                    }else{
-                        stop=true;
-                    }   
-                }
-                if(clientWithSeller==false){
-                    activeClientsWithoutSeller.add(clients.get(i));
-                }
-            } 
-        }
-        message="The clients withour sellers are:\n";
-        for(int i=0; i<activeClientsWithoutSeller.size(); i++){
-            if(activeClientsWithoutSeller.size()==0){
-                message+="Nobody";
-            }else{
-                message+="Id:"+activeClientsWithoutSeller.get(i).getId()+"\n Name:"+activeClientsWithoutSeller.get(i).getName()+"\n";
-            }
-        }
-        return message;
     }
 }

@@ -27,7 +27,6 @@ public class Motorcycle extends Vehicle implements GasolineConsumable{
      * @param mechanicalTechnicalReview The mechanical technical review
      * @param type The type
      * @param gasolineCapacity The gasoline capacity
-     * @param gasolineConsume The gasoline consume
      */
     public Motorcycle(double price, String brand, int model, double displacement, double mileage, boolean isNew, String licensePlate, Document soat, Document mechanicalTechnicalReview, int type, double gasolineCapacity){
         super(price, brand, model, displacement, mileage, isNew, licensePlate, soat, mechanicalTechnicalReview);
@@ -46,7 +45,10 @@ public class Motorcycle extends Vehicle implements GasolineConsumable{
         double gasolineConsume=gasolineCapacity*(getDisplacement()/90);
         return gasolineConsume;
     }
-
+    
+    /**
+     * @return Information about the motorcycle
+     */
     @Override
     public String toString() {
         String typeWord="";
@@ -68,12 +70,12 @@ public class Motorcycle extends Vehicle implements GasolineConsumable{
         message+="    Type:"+typeWord+"\n"+"    Gasoline capacity:"+gasolineCapacity+"\n"+"    Gasoline consume:"+gasolineConsume+"\n";
         return message;
     }
-
-    @Override
+    
     /**
      * It calculates the total cost of a motorcycle
      * @return The total cost
      */
+    @Override
     public double calculateTotalCost() {
         double totalCost=getPrice();
         totalCost+=totalCost*0.04;

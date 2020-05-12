@@ -45,10 +45,10 @@ public abstract class Vehicle {
         owner=null;
     }
     
-    @Override
     /**
      * @return Information about the vehicle
      */
+    @Override
     public String toString() {
         String status;
         String licenseP;
@@ -213,7 +213,7 @@ public abstract class Vehicle {
         this.mileage = mileage;
     }
     /**
-     * @param mileage The status to set. True if the car is new. False if it doesn't
+     * @param isNew The status to set. True if the car is new. False if it doesn't
      */
     public void setIsNew(boolean isNew){
         this.isNew=isNew;

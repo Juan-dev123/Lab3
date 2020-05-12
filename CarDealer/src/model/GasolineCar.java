@@ -46,10 +46,10 @@ public class GasolineCar extends Car implements GasolineConsumable{
         return gasolineConsume;
     }
 
-    @Override
     /**
      * @return Information about the gasoline car
      */
+    @Override
     public String toString() {
         String message="Gasoline Car\n"+super.toString();
         String typeOfFuelWord="";
@@ -67,12 +67,12 @@ public class GasolineCar extends Car implements GasolineConsumable{
         message+="    Tank capacity:"+tankCapacity+"\n"+"    Type of fuel:"+typeOfFuelWord+"\n"+"    Gasoline consume:"+gasolineConsume+"\n";
         return message;
     }
-
-    @Override
+    
     /**
      * It calculates the total cost of a gasoline car
      * @return The total cost
      */
+    @Override
     public double calculateTotalCost() {
         double totalCost=getPrice();
         if(getIsnew()==false){
